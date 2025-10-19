@@ -11,9 +11,6 @@ export default function TaskForm({ task, onTaskChange }) {
             <span className="text-xl">📝</span>
             <span>عنوان تسک</span>
           </label>
-          <div className="text-[#7C4DFF] text-sm bg-white px-2 py-1 rounded-lg border border-[#C5B4E3]">
-            الزامی
-          </div>
         </div>
         
         <input
@@ -38,9 +35,6 @@ export default function TaskForm({ task, onTaskChange }) {
             <span className="text-xl">📄</span>
             <span>توضیحات</span>
           </label>
-          <div className="text-[#7C4DFF] text-sm bg-white px-2 py-1 rounded-lg border border-[#C5B4E3]">
-            اختیاری
-          </div>
         </div>
         
         <textarea

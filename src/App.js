@@ -1,19 +1,23 @@
+// C:\Users\Dell\Desktop\ToDo-list\src\App.js
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { TaskProvider } from './context/TaskContext';
 import HomePage from './components/HomePage/HomePage';
 import AddTaskPage from './components/AddTaskPage/AddTaskPage';
-// حذف این خط
-// import CategorySelect from './components/CategorySelect/CategorySelect';
+import CategoryManager from './components/AddTaskPage/CategoryManager/CategoryManager';
+import './App.css';
 
 function App() {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/add" element={<AddTaskPage />} />
-        {/* اگر نیاز به صفحه جداگانه دسته‌بندی داری، کامپوننتش رو بساز */}
-      </Routes>
-    </BrowserRouter>
+    <TaskProvider>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/add" element={<AddTaskPage />} />
+          <Route path="/categories" element={<CategoryManager />} />
+        </Routes>
+      </BrowserRouter>
+    </TaskProvider>
   );
 }
 
