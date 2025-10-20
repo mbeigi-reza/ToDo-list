@@ -1,7 +1,7 @@
-// C:\Users\Dell\Desktop\ToDo-list\src\components\AddTaskPage\Calender.jsx
+// C:\Users\Dell\Desktop\ToDo-list\src\components\AddTaskPage\Calendar.jsx
 import React, { useState, useEffect } from "react";
 
-// تبدیل تاریخ میلادی به شمسی (بدون کتابخانه)
+// توابع تبدیل تاریخ (همان کد قبلی)
 function toJalali(gDate) {
   const gy = gDate.getFullYear();
   const gm = gDate.getMonth() + 1;
@@ -43,7 +43,6 @@ function toJalali(gDate) {
   return { jy, jm: jm + 1, jd };
 }
 
-// برعکسش برای تغییر ماه
 function jalaliToGregorian(jy, jm, jd) {
   jy -= 979;
   let j_day_no =
@@ -89,7 +88,17 @@ function jalaliToGregorian(jy, jm, jd) {
 }
 
 export default function JalaliCalendar({ selectedDate, onDateChange }) {
-  const [currentJDate, setCurrentJDate] = useState(toJalali(selectedDate));
+  // تنظیم تاریخ امروز به صورت پیش‌فرض
+  const [currentJDate, setCurrentJDate] = useState(() => {
+    const today = new Date();
+    return toJalali(today);
+  });
+
+  // وقتی کامپوننت mount شد، تاریخ امروز رو انتخاب کن
+  useEffect(() => {
+    const today = new Date();
+    onDateChange(today);
+  }, []);
 
   const getDaysOfMonth = (jy, jm) => {
     const monthDays = jm <= 6 ? 31 : jm <= 11 ? 30 : 29;
@@ -122,65 +131,100 @@ export default function JalaliCalendar({ selectedDate, onDateChange }) {
     setCurrentJDate({ jy, jm, jd: 1 });
   };
 
+  // بررسی آیا تاریخ قابل انتخاب است (امروز یا آینده)
+  const isDateSelectable = (day) => {
+    if (!day) return false;
+    
+    const selectedGregorian = jalaliToGregorian(currentJDate.jy, currentJDate.jm, day);
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    selectedGregorian.setHours(0, 0, 0, 0);
+    
+    return selectedGregorian >= today;
+  };
+
+  // بررسی آیا تاریخ امروز است
+  const isToday = (day) => {
+    if (!day) return false;
+    
+    const selectedGregorian = jalaliToGregorian(currentJDate.jy, currentJDate.jm, day);
+    const today = new Date();
+    
+    return (
+      selectedGregorian.getDate() === today.getDate() &&
+      selectedGregorian.getMonth() === today.getMonth() &&
+      selectedGregorian.getFullYear() === today.getFullYear()
+    );
+  };
+
+  // بررسی آیا تاریخ انتخاب شده است
+  const isSelected = (day) => {
+    if (!day) return false;
+    
+    const selectedGregorian = jalaliToGregorian(currentJDate.jy, currentJDate.jm, day);
+    return selectedGregorian.toDateString() === selectedDate.toDateString();
+  };
+
   const days = getDaysOfMonth(currentJDate.jy, currentJDate.jm);
   const months = [
-    "فروردین",
-    "اردیبهشت",
-    "خرداد",
-    "تیر",
-    "مرداد",
-    "شهریور",
-    "مهر",
-    "آبان",
-    "آذر",
-    "دی",
-    "بهمن",
-    "اسفند",
+    "فروردین", "اردیبهشت", "خرداد", "تیر", "مرداد", "شهریور",
+    "مهر", "آبان", "آذر", "دی", "بهمن", "اسفند"
   ];
 
   return (
-    <div className="w-full mb-4 p-4 border rounded">
-      <div className="flex justify-between items-center mb-3">
+    <div className="w-full mb-4 p-4 border rounded-lg bg-white shadow-sm">
+      <div className="flex justify-between items-center mb-4">
         <button
           onClick={handlePrevMonth}
-          className="px-2 py-1 bg-gray-200 rounded hover:bg-gray-300"
+          className="px-3 py-2 bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors text-gray-700"
         >
           ◀
         </button>
-        <h2 className="text-lg font-semibold">
+        <h2 className="text-lg font-semibold text-gray-800">
           {months[currentJDate.jm - 1]} {currentJDate.jy}
         </h2>
         <button
           onClick={handleNextMonth}
-          className="px-2 py-1 bg-gray-200 rounded hover:bg-gray-300"
+          className="px-3 py-2 bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors text-gray-700"
         >
           ▶
         </button>
       </div>
 
-      <div className="grid grid-cols-7 gap-1 text-center">
+      <div className="grid grid-cols-7 gap-2 text-center">
         {["ش", "ی", "د", "س", "چ", "پ", "ج"].map((day) => (
-          <div key={day} className="font-bold py-1">{day}</div>
+          <div key={day} className="font-bold py-2 text-gray-600 text-sm">{day}</div>
         ))}
 
-        {days.map((day, i) => (
-          <div
-            key={i}
-            className={`border h-10 flex items-center justify-center rounded cursor-pointer
-              ${
-                day === currentJDate.jd
-                  ? "bg-blue-500 text-white"
-                  : "hover:bg-blue-100"
-              }
-            `}
-            onClick={() =>
-              day &&
-              onDateChange(jalaliToGregorian(currentJDate.jy, currentJDate.jm, day))
-            }
-          >
-            {day || ""}
-          </div>
-        ))}
+        {days.map((day, i) => {
+          const selectable = isDateSelectable(day);
+          const today = isToday(day);
+          const selected = isSelected(day);
+          
+          return (
+            <div
+              key={i}
+              className={`
+                border h-10 flex items-center justify-center rounded-lg cursor-pointer transition-all relative
+                ${!day ? 'invisible' : ''}
+                ${!selectable ? 
+                  'bg-gray-100 text-gray-400 cursor-not-allowed' : 
+                  selected ? 
+                    'bg-[#7C4DFF] text-white shadow-lg transform scale-105' : 
+                    today ? 
+                      'bg-[#E1D8F1] text-[#673AB7] border-2 border-[#673AB7]' : 
+                      'bg-white text-gray-700 border border-gray-200 hover:bg-gray-50 hover:border-gray-300'
+                }
+              `}
+              onClick={() => selectable && day && onDateChange(jalaliToGregorian(currentJDate.jy, currentJDate.jm, day))}
+            >
+              {day || ""}
+              {today && !selected && (
+                <div className="absolute bottom-1 w-1 h-1 bg-[#673AB7] rounded-full"></div>
+              )}
+            </div>
+          );
+        })}
       </div>
     </div>
   );

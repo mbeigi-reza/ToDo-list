@@ -34,7 +34,17 @@ export function TaskProvider({ children }) {
 
   const toggleTaskCompletion = (taskId) => {
     setTasks(prev => prev.map(task => 
-      task.id === taskId ? { ...task, completed: !task.completed } : task
+      task.id === taskId ? { 
+        ...task, 
+        completed: !task.completed,
+        completedAt: !task.completed ? new Date() : undefined
+      } : task
+    ));
+  };
+
+  const updateTask = (taskId, updates) => {
+    setTasks(prev => prev.map(task => 
+      task.id === taskId ? { ...task, ...updates } : task
     ));
   };
 
@@ -43,7 +53,8 @@ export function TaskProvider({ children }) {
       tasks, 
       addTask, 
       deleteTask, 
-      toggleTaskCompletion 
+      toggleTaskCompletion,
+      updateTask
     }}>
       {children}
     </TaskContext.Provider>

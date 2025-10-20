@@ -13,8 +13,13 @@ export default function AddTaskPage() {
   const [category, setCategory] = useState("");
   const [task, setTask] = useState({ title: "", description: "" });
   const [isCategoryOpen, setIsCategoryOpen] = useState(false);
+  const [isDateEnabled, setIsDateEnabled] = useState(true); // حالت جدید برای فعال/غیرفعال کردن تاریخ
 
-  const handleDateChange = (date) => setSelectedDate(date);
+  const handleDateChange = (date) => {
+    if (isDateEnabled) {
+      setSelectedDate(date);
+    }
+  };
   
   const handleCategoryChange = (value) => {
     setCategory(value);
@@ -37,16 +42,17 @@ export default function AddTaskPage() {
       return;
     }
 
-    // ایجاد تسک جدید با تاریخ انتخاب‌شده
+    // ایجاد تسک جدید
     const newTask = {
       title: task.title,
       description: task.description,
-      date: selectedDate, // تاریخ انتخاب‌شده در تقویم
+      date: isDateEnabled ? selectedDate : null, // اگر تاریخ غیرفعال باشد، null می‌گذاریم
       category: category,
       time: new Date().toLocaleTimeString('fa-IR', { 
         hour: '2-digit', 
         minute: '2-digit' 
-      })
+      }),
+      isDateEnabled: isDateEnabled // ذخیره وضعیت تاریخ
     };
 
     // اضافه کردن به context
@@ -69,6 +75,10 @@ export default function AddTaskPage() {
     navigate("/categories");
   };
 
+  const toggleDateEnabled = () => {
+    setIsDateEnabled(!isDateEnabled);
+  };
+
   return (
     <div className="min-h-screen bg-[#F5F5F5] p-4">
       {/* هدر */}
@@ -89,9 +99,42 @@ export default function AddTaskPage() {
 
       {/* محتوای اصلی */}
       <div className="bg-white rounded-lg shadow-lg p-4">
-        {/* تقویم */}
+        {/* بخش تاریخ با قابلیت فعال/غیرفعال */}
         <div className="mb-6">
-          <Calendar selectedDate={selectedDate} onDateChange={handleDateChange} />
+          <div className="flex items-center justify-between mb-3">
+            <h3 className="text-[#673AB7] font-semibold text-lg">تاریخ تسک</h3>
+            <button
+              onClick={toggleDateEnabled}
+              className={`flex items-center space-x-2 space-x-reverse px-4 py-2 rounded-lg transition-colors ${
+                isDateEnabled 
+                  ? 'bg-[#7C4DFF] text-white' 
+                  : 'bg-[#E1D8F1] text-[#673AB7] border border-[#C5B4E3]'
+              }`}
+            >
+              <span>{isDateEnabled ? 'فعال' : 'غیرفعال'}</span>
+              <div className={`w-4 h-4 rounded border-2 ${
+                isDateEnabled ? 'bg-white border-white' : 'bg-transparent border-[#673AB7]'
+              }`}></div>
+            </button>
+          </div>
+
+          {isDateEnabled ? (
+            <div className="bg-[#F8F5FF] p-4 rounded-lg border border-[#E1D8F1]">
+              <Calendar 
+                selectedDate={selectedDate} 
+                onDateChange={handleDateChange} 
+                disabled={!isDateEnabled}
+              />
+              <div className="mt-2 text-sm text-[#673AB7] text-center">
+                تاریخ انتخاب شده: {selectedDate.toLocaleDateString('fa-IR')}
+              </div>
+            </div>
+          ) : (
+            <div className="bg-[#F8F5FF] p-4 rounded-lg border border-[#E1D8F1] text-center">
+              <div className="text-[#673AB7] text-lg mb-2">📅</div>
+              <p className="text-[#673AB7]">این تسک برای همه روزها فعال خواهد بود</p>
+            </div>
+          )}
         </div>
 
         {/* انتخاب دسته‌بندی */}
@@ -122,14 +165,12 @@ export default function AddTaskPage() {
             </div>
           </div>
 
-          {/* نمایش دسته‌بندی‌ها وقتی باز است */}
           {isCategoryOpen && (
             <div className="mt-2">
               <CategorySelect category={category} onCategoryChange={handleCategoryChange} />
             </div>
           )}
 
-          {/* دکمه مدیریت دسته‌بندی‌ها */}
           <button
             onClick={handleManageCategories}
             className="w-full mt-3 bg-[#E1D8F1] hover:bg-[#C5B4E3] text-[#673AB7] font-medium py-2 px-4 rounded-lg transition-colors duration-200 border border-[#C5B4E3] flex items-center justify-center space-x-2 space-x-reverse"

@@ -8,11 +8,12 @@ export default function CategoryManager() {
   const [categories, setCategories] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  // دسته‌بندی‌های پیش‌فرض
+  // 4 دسته‌بندی پیش‌فرض
   const defaultCategories = [
-    { id: 1, value: "work", label: "کار", icon: "💼", color: "#512DA8", taskCount: 8, isDefault: true },
-    { id: 2, value: "personal", label: "شخصی", icon: "❤️", color: "#FF6B6B", taskCount: 5, isDefault: true },
-    { id: 3, value: "shopping", label: "خرید", icon: "🛒", color: "#4ECDC4", taskCount: 3, isDefault: true },
+    { id: 1, value: "work", label: "کار", icon: "💼", color: "#512DA8", taskCount: 0, isDefault: true },
+    { id: 2, value: "personal", label: "شخصی", icon: "❤️", color: "#FF6B6B", taskCount: 0, isDefault: true },
+    { id: 3, value: "shopping", label: "خرید", icon: "🛒", color: "#4ECDC4", taskCount: 0, isDefault: true },
+    { id: 4, value: "health", label: "سلامتی", icon: "🏥", color: "#96CEB4", taskCount: 0, isDefault: true },
   ];
 
   // بارگذاری دسته‌بندی‌ها از localStorage
@@ -29,7 +30,9 @@ export default function CategoryManager() {
 
   // ذخیره دسته‌بندی‌ها در localStorage
   useEffect(() => {
-    localStorage.setItem('taskCategories', JSON.stringify(categories));
+    if (categories.length > 0) {
+      localStorage.setItem('taskCategories', JSON.stringify(categories));
+    }
   }, [categories]);
 
   const handleAddCategory = (newCategory) => {
@@ -132,9 +135,6 @@ export default function CategoryManager() {
                     <span className="text-2xl">{category.icon}</span>
                     <div className="text-right">
                       <div className="font-semibold text-lg">{category.label}</div>
-                      <div className="text-sm opacity-90">
-                        {category.taskCount} تسک
-                      </div>
                     </div>
                   </div>
                   
@@ -179,9 +179,6 @@ export default function CategoryManager() {
                     <span className="text-2xl">{category.icon}</span>
                     <div className="text-right">
                       <div className="font-semibold text-lg">{category.label}</div>
-                      <div className="text-sm opacity-90">
-                        {category.taskCount} تسک
-                      </div>
                     </div>
                   </div>
                   
@@ -220,7 +217,7 @@ export default function CategoryManager() {
         <div className="mt-6 p-4 bg-[#F8F5FF] rounded-lg border border-[#E1D8F1]">
           <h3 className="text-[#673AB7] font-semibold mb-2 text-center">راهنما</h3>
           <ul className="text-[#673AB7] text-sm text-right space-y-1">
-            <li>• <strong>دسته‌بندی‌های پیش‌فرض</strong> قابل حذف هستند اما پس از بازنشانی بازمی‌گردند</li>
+            <li>• <strong>دسته‌بندی‌های پیش‌فرض</strong> قابل حذف هستند</li>
             <li>• <strong>دسته‌بندی‌های شما</strong> فقط توسط شما ایجاد و حذف می‌شوند</li>
             <li>• با دکمه <strong>بازنشانی</strong> همه چیز به حالت اول برمی‌گردد</li>
           </ul>
