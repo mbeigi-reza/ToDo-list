@@ -1,13 +1,19 @@
-// C:\Users\Dell\Desktop\ToDo-list\src\components\HomePage\HorizontalCalendar.jsx
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 
-// توابع تبدیل تاریخ (همان کد قبلی)
+// ✅ تابع تشخیص کبیسه بودن سال شمسی
+function isJalaliLeapYear(jy) {
+  const mod = jy % 33;
+  return [1, 5, 9, 13, 17, 22, 26, 30].includes(mod);
+}
+
+// ✅ تبدیل میلادی به شمسی
 function toJalali(gDate) {
   const gy = gDate.getFullYear();
   const gm = gDate.getMonth() + 1;
   const gd = gDate.getDate();
 
-  const g_d_m = [0, 31, (gy % 4 === 0 && gy % 100 !== 0) || gy % 400 === 0 ? 29 : 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+  const g_d_m = [0, 31, (gy % 4 === 0 && gy % 100 !== 0) || gy % 400 === 0 ? 29 : 28,
+    31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
   let gy2 = gy - 1600;
   let gm2 = gm - 1;
   let gd2 = gd - 1;
@@ -33,7 +39,7 @@ function toJalali(gDate) {
     j_day_no = (j_day_no - 1) % 365;
   }
 
-  const j_month_days = [31, 31, 31, 31, 31, 31, 30, 30, 30, 30, 30, 29];
+  const j_month_days = [31, 31, 31, 31, 31, 31, 30, 30, 30, 30, 30, isJalaliLeapYear(jy) ? 30 : 29];
   let jm;
   for (jm = 0; jm < 11 && j_day_no >= j_month_days[jm]; ++jm) {
     j_day_no -= j_month_days[jm];
@@ -43,12 +49,13 @@ function toJalali(gDate) {
   return { jy, jm: jm + 1, jd };
 }
 
+// ✅ تبدیل شمسی به میلادی
 function jalaliToGregorian(jy, jm, jd) {
+  const isLeap = isJalaliLeapYear(jy);
   jy -= 979;
-  let j_day_no =
-    365 * jy + Math.floor(jy / 33) * 8 + Math.floor((jy % 33 + 3) / 4);
+  let j_day_no = 365 * jy + Math.floor(jy / 33) * 8 + Math.floor((jy % 33 + 3) / 4);
 
-  const j_month_days = [31, 31, 31, 31, 31, 31, 30, 30, 30, 30, 30, 29];
+  const j_month_days = [31, 31, 31, 31, 31, 31, 30, 30, 30, 30, 30, isLeap ? 30 : 29];
   for (let i = 0; i < jm - 1; ++i) j_day_no += j_month_days[i];
   j_day_no += jd - 1;
 
@@ -88,25 +95,54 @@ function jalaliToGregorian(jy, jm, jd) {
 }
 
 export default function HorizontalCalendar({ selectedDate, onDateChange }) {
-  const [currentMonth, setCurrentMonth] = useState({ jy: 1404, jm: 7 }); // مهر 1404
-  const [days, setDays] = useState([]);
+  const [currentMonth, setCurrentMonth] = useState(() => {
+    const today = new Date();
+    const jalaliToday = toJalali(today);
+    return { jy: jalaliToday.jy, jm: jalaliToday.jm };
+  });
 
-  // تولید روزهای ماه جاری
+  const [days, setDays] = useState([]);
+  const scrollContainerRef = useRef(null);
+
+  // ✅ تولید روزهای دقیق ماه
   useEffect(() => {
     const generateDays = () => {
-      const monthDays = currentMonth.jm <= 6 ? 31 : currentMonth.jm <= 11 ? 30 : 29;
+      const isLeap = isJalaliLeapYear(currentMonth.jy);
+      const monthDays =
+        currentMonth.jm <= 6 ? 31 :
+        currentMonth.jm <= 11 ? 30 :
+        isLeap ? 30 : 29;
+
       const daysArray = [];
-      
       for (let d = 1; d <= monthDays; d++) {
         const gregorianDate = jalaliToGregorian(currentMonth.jy, currentMonth.jm, d);
-        daysArray.push(gregorianDate);
+        daysArray.push({ date: gregorianDate, dayNumber: d });
       }
-      
+
       setDays(daysArray);
     };
 
     generateDays();
   }, [currentMonth]);
+
+  // ✅ انتخاب و اسکرول به امروز
+  useEffect(() => {
+    const today = new Date();
+    onDateChange(today);
+
+    setTimeout(() => {
+      if (scrollContainerRef.current) {
+        const todayElement = scrollContainerRef.current.querySelector('[data-today="true"]');
+        if (todayElement) {
+          todayElement.scrollIntoView({
+            behavior: 'smooth',
+            block: 'nearest',
+            inline: 'center'
+          });
+        }
+      }
+    }, 100);
+  }, [onDateChange]);
 
   const handlePrevMonth = () => {
     setCurrentMonth(prev => {
@@ -128,12 +164,6 @@ export default function HorizontalCalendar({ selectedDate, onDateChange }) {
         jm = 1;
         jy++;
       }
-      
-      // محدودیت تا سال 1410
-      if (jy > 1410) {
-        return prev;
-      }
-      
       return { jy, jm };
     });
   };
@@ -164,40 +194,53 @@ export default function HorizontalCalendar({ selectedDate, onDateChange }) {
     "مهر", "آبان", "آذر", "دی", "بهمن", "اسفند"
   ];
 
+  const isCurrentMonthToday = () => {
+    const today = new Date();
+    const jalaliToday = toJalali(today);
+    return currentMonth.jy === jalaliToday.jy && currentMonth.jm === jalaliToday.jm;
+  };
+
   return (
     <div className="bg-white p-4 shadow-lg">
-      {/* کنترل‌های ماه */}
+      {/* کنترل ماه */}
       <div className="flex justify-between items-center mb-4">
         <button
           onClick={handlePrevMonth}
-          disabled={currentMonth.jy === 1404 && currentMonth.jm === 1}
-          className="px-3 py-2 bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors text-gray-700 disabled:opacity-50 disabled:cursor-not-allowed"
+          className="px-4 py-2 bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors text-gray-700 flex items-center space-x-2 space-x-reverse"
         >
-          ◀ ماه قبل
+          <span>◀</span>
+          <span>ماه قبل</span>
         </button>
-        
-        <h3 className="text-lg font-semibold text-gray-800">
+
+        <div className="text-lg font-semibold text-gray-800 text-center">
           {months[currentMonth.jm - 1]} {currentMonth.jy}
-        </h3>
-        
+          {isCurrentMonthToday() && (
+            <div className="text-sm text-green-600 mt-1">(ماه جاری)</div>
+          )}
+        </div>
+
         <button
           onClick={handleNextMonth}
-          disabled={currentMonth.jy === 1410 && currentMonth.jm === 12}
-          className="px-3 py-2 bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors text-gray-700 disabled:opacity-50 disabled:cursor-not-allowed"
+          className="px-4 py-2 bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors text-gray-700 flex items-center space-x-2 space-x-reverse"
         >
-          ماه بعد ▶
+          <span>ماه بعد</span>
+          <span>▶</span>
         </button>
       </div>
 
-      {/* لیست روزها */}
-      <div className="flex overflow-x-auto space-x-2 space-x-reverse pb-2 scrollbar-hide">
-        {/* گزینه نمایش همه تسک‌ها */}
+      {/* روزها */}
+      <div
+        ref={scrollContainerRef}
+        className="flex overflow-x-auto space-x-2 space-x-reverse pb-2 scrollbar-hide"
+        style={{ scrollBehavior: 'smooth' }}
+      >
+        {/* همه تسک‌ها */}
         <div
           onClick={handleShowAllTasks}
           className={`
             min-w-[80px] p-3 rounded-xl text-center cursor-pointer transition-all flex flex-col items-center justify-center border-2 flex-shrink-0
-            ${isAllTasksSelected 
-              ? 'bg-[#673AB7] text-white shadow-lg transform scale-105 border-[#673AB7]' 
+            ${isAllTasksSelected
+              ? 'bg-[#673AB7] text-white shadow-lg transform scale-105 border-[#673AB7]'
               : 'bg-gray-50 hover:bg-gray-100 text-gray-700 border-gray-200 hover:border-gray-300'
             }
           `}
@@ -207,35 +250,38 @@ export default function HorizontalCalendar({ selectedDate, onDateChange }) {
         </div>
 
         {/* روزهای ماه */}
-        {days.map((date, index) => (
-          <div
-            key={index}
-            onClick={() => onDateChange(date)}
-            className={`
-              min-w-[60px] p-2 rounded-xl text-center cursor-pointer transition-all flex flex-col items-center justify-center border-2 flex-shrink-0
-              ${isSelected(date)
-                ? 'bg-[#673AB7] text-white shadow-lg transform scale-105 border-[#673AB7]'
-                : isToday(date)
-                ? 'bg-[#E1D8F1] text-[#673AB7] border-[#673AB7]'
-                : 'bg-white text-gray-700 border-gray-200 hover:bg-gray-50 hover:border-gray-300'
-              }
-            `}
-          >
-            <div className={`text-xs font-medium ${
-              isToday(date) && !isSelected(date) ? 'text-[#673AB7]' : ''
-            }`}>
-              {getDayName(date)}
+        {days.map((dayObj, index) => {
+          const { date, dayNumber } = dayObj;
+          const today = isToday(date);
+          const selected = isSelected(date);
+
+          return (
+            <div
+              key={index}
+              onClick={() => onDateChange(date)}
+              data-today={today}
+              className={`
+                min-w-[60px] p-2 rounded-xl text-center cursor-pointer transition-all flex flex-col items-center justify-center border-2 flex-shrink-0
+                ${selected
+                  ? 'bg-[#673AB7] text-white shadow-lg transform scale-105 border-[#673AB7]'
+                  : today
+                    ? 'bg-[#E1D8F1] text-[#673AB7] border-[#673AB7]'
+                    : 'bg-white text-gray-700 border-gray-200 hover:bg-gray-50 hover:border-gray-300'
+                }
+              `}
+            >
+              <div className={`text-xs font-medium ${today && !selected ? 'text-[#673AB7]' : ''}`}>
+                {getDayName(date)}
+              </div>
+              <div className={`text-base font-bold mt-1 ${today && !selected ? 'text-[#673AB7]' : ''}`}>
+                {dayNumber}
+              </div>
+              <div className="text-[10px] mt-1 opacity-70">
+                {date.toLocaleDateString('fa-IR', { month: 'short' })}
+              </div>
             </div>
-            <div className={`text-base font-bold mt-1 ${
-              isToday(date) && !isSelected(date) ? 'text-[#673AB7]' : ''
-            }`}>
-              {date.getDate()}
-            </div>
-            <div className="text-[10px] mt-1 opacity-70">
-              {date.toLocaleDateString('fa-IR', { month: 'short' })}
-            </div>
-          </div>
-        ))}
+          );
+        })}
       </div>
     </div>
   );
