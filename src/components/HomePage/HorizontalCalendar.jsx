@@ -215,7 +215,7 @@ export default function HorizontalCalendar({ selectedDate, onDateChange }) {
         <div className="text-lg font-semibold text-gray-800 text-center">
           {months[currentMonth.jm - 1]} {currentMonth.jy}
           {isCurrentMonthToday() && (
-            <div className="text-sm text-green-600 mt-1">(ماه جاری)</div>
+            <div className="text-sm text-green-600 mt-1"></div>
           )}
         </div>
 

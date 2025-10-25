@@ -1,6 +1,6 @@
-body {
-  @apply font-vazir;
-}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 @font-face {
   font-family: "Vazir";
@@ -9,6 +9,28 @@ body {
   font-style: normal;
 }
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+body {
+  font-family: "Vazir", sans-serif;
+}
+
+@layer base {
+  html {
+    font-size: 14px;
+  }
+  
+  @media (min-width: 768px) {
+    html {
+      font-size: 16px;
+    }
+  }
+}
+
+/* استایل اسکرول بار سفارشی */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
