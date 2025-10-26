@@ -5,6 +5,7 @@ import { useTasks } from "../../context/TaskContext";
 import Calendar from "./Calendar";
 import CategorySelect from "./CategorySelect";
 import TaskForm from "./TaskForm";
+import { Settings, Save, Calendar as CalendarIcon } from 'lucide-react';
 
 export default function AddTaskPage() {
   const navigate = useNavigate();
@@ -13,7 +14,7 @@ export default function AddTaskPage() {
   const [category, setCategory] = useState("");
   const [task, setTask] = useState({ title: "", description: "" });
   const [isCategoryOpen, setIsCategoryOpen] = useState(false);
-  const [isDateEnabled, setIsDateEnabled] = useState(true); // حالت جدید برای فعال/غیرفعال کردن تاریخ
+  const [isDateEnabled, setIsDateEnabled] = useState(true);
 
   const handleDateChange = (date) => {
     if (isDateEnabled) {
@@ -46,13 +47,13 @@ export default function AddTaskPage() {
     const newTask = {
       title: task.title,
       description: task.description,
-      date: isDateEnabled ? selectedDate : null, // اگر تاریخ غیرفعال باشد، null می‌گذاریم
+      date: isDateEnabled ? selectedDate : null,
       category: category,
       time: new Date().toLocaleTimeString('fa-IR', { 
         hour: '2-digit', 
         minute: '2-digit' 
       }),
-      isDateEnabled: isDateEnabled // ذخیره وضعیت تاریخ
+      isDateEnabled: isDateEnabled
     };
 
     // اضافه کردن به context
@@ -86,7 +87,7 @@ export default function AddTaskPage() {
         <div className="flex items-center justify-between">
           <button 
             onClick={() => navigate(-1)}
-            className="text-white bg-[#512DA8] p-2 rounded-lg hover:bg-[#7C4DFF] transition-colors"
+            className="text-white bg-[#512DA8] p-2 rounded-lg hover:bg-[#7C4DFF] transition-colors flex items-center justify-center"
           >
             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
@@ -105,7 +106,7 @@ export default function AddTaskPage() {
             <h3 className="text-[#673AB7] font-semibold text-lg">تاریخ تسک</h3>
             <button
               onClick={toggleDateEnabled}
-              className={`flex items-center space-x-2 space-x-reverse px-4 py-2 rounded-lg transition-colors ${
+              className={`flex items-center gap-2 px-4 py-2 rounded-lg transition-colors ${
                 isDateEnabled 
                   ? 'bg-[#7C4DFF] text-white' 
                   : 'bg-[#E1D8F1] text-[#673AB7] border border-[#C5B4E3]'
@@ -131,7 +132,7 @@ export default function AddTaskPage() {
             </div>
           ) : (
             <div className="bg-[#F8F5FF] p-4 rounded-lg border border-[#E1D8F1] text-center">
-              <div className="text-[#673AB7] text-lg mb-2">📅</div>
+              <CalendarIcon className="w-8 h-8 text-[#673AB7] mx-auto mb-2" />
               <p className="text-[#673AB7]">این تسک برای همه روزها فعال خواهد بود</p>
             </div>
           )}
@@ -144,15 +145,10 @@ export default function AddTaskPage() {
             className="bg-[#F8F5FF] p-4 rounded-lg border border-[#E1D8F1] cursor-pointer hover:bg-[#F0EBFF] transition-colors"
           >
             <div className="flex items-center justify-between">
-              <h3 className="text-[#673AB7] font-semibold text-right text-lg">
+              <h3 className="text-[#673AB7] font-semibold text-lg">
                 انتخاب دسته‌بندی
               </h3>
-              <div className="flex items-center space-x-2 space-x-reverse">
-                {category && (
-                  <span className="text-[#512DA8] bg-white px-2 py-1 rounded text-sm border border-[#C5B4E3]">
-                    {category}
-                  </span>
-                )}
+              <div className="flex items-center gap-2">
                 <svg 
                   className={`w-5 h-5 text-[#673AB7] transition-transform ${isCategoryOpen ? 'rotate-180' : ''}`}
                   fill="none" 
@@ -161,6 +157,11 @@ export default function AddTaskPage() {
                 >
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                 </svg>
+                {category && (
+                  <span className="text-[#512DA8] bg-white px-2 py-1 rounded text-sm border border-[#C5B4E3]">
+                    {category}
+                  </span>
+                )}
               </div>
             </div>
           </div>
@@ -173,12 +174,9 @@ export default function AddTaskPage() {
 
           <button
             onClick={handleManageCategories}
-            className="w-full mt-3 bg-[#E1D8F1] hover:bg-[#C5B4E3] text-[#673AB7] font-medium py-2 px-4 rounded-lg transition-colors duration-200 border border-[#C5B4E3] flex items-center justify-center space-x-2 space-x-reverse"
+            className="w-full mt-3 bg-[#E1D8F1] hover:bg-[#C5B4E3] text-[#673AB7] font-medium py-3 px-4 rounded-lg transition-colors duration-200 border border-[#C5B4E3] flex items-center justify-center gap-2 hover:bg-opacity-90"
           >
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-            </svg>
+            <Settings className="w-5 h-5" />
             <span>مدیریت دسته‌بندی‌ها</span>
           </button>
         </div>
@@ -192,9 +190,10 @@ export default function AddTaskPage() {
         <button
           type="submit"
           onClick={handleSubmit}
-          className="bg-[#7C4DFF] hover:bg-[#673AB7] text-white font-medium py-3 px-6 rounded-lg w-full transition-colors duration-200 shadow-md"
+          className="bg-[#7C4DFF] hover:bg-[#673AB7] text-white font-medium py-3 px-6 rounded-lg w-full transition-colors duration-200 shadow-md flex items-center justify-center gap-2"
         >
-          ذخیره تسک
+          <Save className="w-5 h-5" />
+          <span>ذخیره تسک</span>
         </button>
       </div>
     </div>

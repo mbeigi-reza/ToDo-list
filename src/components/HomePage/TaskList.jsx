@@ -2,6 +2,16 @@
 import React, { useState } from 'react';
 import { useTasks } from '../../context/TaskContext';
 import { useNavigate } from 'react-router-dom';
+import { 
+  CheckCircle2, 
+  Circle, 
+  Edit3, 
+  Trash2, 
+  Save, 
+  X,
+  Clock,
+  Plus
+} from 'lucide-react';
 
 export default function TaskList({ tasks, selectedDate }) {
   const { deleteTask, toggleTaskCompletion, updateTask } = useTasks();
@@ -72,7 +82,7 @@ export default function TaskList({ tasks, selectedDate }) {
           >
             {/* هدر تسک */}
             <div className="flex justify-between items-start mb-3">
-              <div className="flex items-center space-x-3 space-x-reverse flex-1">
+              <div className="flex items-center gap-3 flex-1">
                 {/* دکمه تکمیل/عدم تکمیل */}
                 <button
                   onClick={() => toggleTaskCompletion(task.id)}
@@ -83,7 +93,7 @@ export default function TaskList({ tasks, selectedDate }) {
                   }`}
                   title={task.completed ? 'بازگشت به حالت انجام نشده' : 'علامت به عنوان انجام شده'}
                 >
-                  {task.completed && '✓'}
+                  {task.completed ? <CheckCircle2 className="w-4 h-4" /> : <Circle className="w-4 h-4" />}
                 </button>
                 
                 {/* عنوان تسک - حالت نمایش یا ویرایش */}
@@ -106,7 +116,7 @@ export default function TaskList({ tasks, selectedDate }) {
                 )}
               </div>
               
-              <div className="flex items-center space-x-2 space-x-reverse mr-3">
+              <div className="flex items-center gap-2 mr-3">
                 {/* نمایش دسته‌بندی */}
                 {categoryInfo && (
                   <span 
@@ -116,13 +126,13 @@ export default function TaskList({ tasks, selectedDate }) {
                       color: ['#E1D8F1', '#C5B4E3'].includes(categoryInfo.color) ? '#673AB7' : 'white'
                     }}
                   >
-                    {categoryInfo.icon} {categoryInfo.label}
+                    {categoryInfo.label}
                   </span>
                 )}
               </div>
 
               {/* منوی اقدامات */}
-              <div className="flex items-center space-x-1 space-x-reverse">
+              <div className="flex items-center gap-1">
                 {/* دکمه ویرایش */}
                 {editingTask === task.id ? (
                   <>
@@ -131,18 +141,14 @@ export default function TaskList({ tasks, selectedDate }) {
                       className="p-2 text-green-600 hover:bg-green-100 rounded-lg transition-colors"
                       title="ذخیره"
                     >
-                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                      </svg>
+                      <Save className="w-4 h-4" />
                     </button>
                     <button
                       onClick={handleCancelEdit}
                       className="p-2 text-gray-600 hover:bg-gray-100 rounded-lg transition-colors"
                       title="انصراف"
                     >
-                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                      </svg>
+                      <X className="w-4 h-4" />
                     </button>
                   </>
                 ) : (
@@ -151,9 +157,7 @@ export default function TaskList({ tasks, selectedDate }) {
                     className="p-2 text-blue-600 hover:bg-blue-100 rounded-lg transition-colors"
                     title="ویرایش تسک"
                   >
-                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
-                    </svg>
+                    <Edit3 className="w-4 h-4" />
                   </button>
                 )}
                 
@@ -162,10 +166,8 @@ export default function TaskList({ tasks, selectedDate }) {
                   onClick={() => handleDelete(task.id)}
                   className="p-2 text-red-600 hover:bg-red-100 rounded-lg transition-colors"
                   title="حذف تسک"
-                >
-                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-                  </svg>
+                  >
+                  <Trash2 className="w-4 h-4" />
                 </button>
               </div>
             </div>
@@ -196,13 +198,17 @@ export default function TaskList({ tasks, selectedDate }) {
               <span>
                 {task.date ? new Date(task.date).toLocaleDateString('fa-IR') : 'بدون تاریخ'}
               </span>
-              <span>{formatTime(task.time)}</span>
+              <span className="flex items-center gap-1">
+                <Clock className="w-3 h-3" />
+                {formatTime(task.time)}
+              </span>
             </div>
             
             {/* وضعیت انجام شده */}
             {task.completed && (
-              <div className="mt-2 flex items-center justify-end space-x-1 space-x-reverse">
-                <span className="text-green-600 text-xs">✅ انجام شده</span>
+              <div className="mt-2 flex items-center justify-end gap-1">
+                <CheckCircle2 className="w-4 h-4 text-green-600" />
+                <span className="text-green-600 text-xs">انجام شده</span>
                 <span className="text-green-600 text-xs">
                   {new Date().toLocaleDateString('fa-IR')}
                 </span>
@@ -227,9 +233,10 @@ export default function TaskList({ tasks, selectedDate }) {
         <div className="text-center py-8">
           <button 
             onClick={handleAddTask}
-            className="bg-[#7C4DFF] hover:bg-[#673AB7] text-white px-6 py-3 rounded-lg font-medium transition-colors shadow-md"
+            className="bg-[#7C4DFF] hover:bg-[#673AB7] text-white px-6 py-3 rounded-lg font-medium transition-colors shadow-md flex items-center justify-center gap-2 mx-auto"
           >
-            + افزودن اولین تسک
+            <Plus className="w-5 h-5" />
+            <span>افزودن اولین تسک</span>
           </button>
         </div>
       )}

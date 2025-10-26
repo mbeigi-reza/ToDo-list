@@ -174,20 +174,24 @@ export default function JalaliCalendar({ selectedDate, onDateChange }) {
   return (
     <div className="w-full mb-4 p-4 border rounded-lg bg-white shadow-sm">
       <div className="flex justify-between items-center mb-4">
-        <button
-          onClick={handlePrevMonth}
-          className="px-3 py-2 bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors text-gray-700"
-        >
-          ◀
-        </button>
-        <h2 className="text-lg font-semibold text-gray-800">
-          {months[currentJDate.jm - 1]} {currentJDate.jy}
-        </h2>
+        {/* دکمه ماه قبل - سمت راست */}
         <button
           onClick={handleNextMonth}
           className="px-3 py-2 bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors text-gray-700"
         >
           ▶
+        </button>
+        
+        <h2 className="text-lg font-semibold text-gray-800">
+          {months[currentJDate.jm - 1]} {currentJDate.jy}
+        </h2>
+        
+        {/* دکمه ماه بعد - سمت چپ */}
+        <button
+          onClick={handlePrevMonth}
+          className="px-3 py-2 bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors text-gray-700"
+        >
+          ◀
         </button>
       </div>
 

@@ -2,7 +2,7 @@
   "name": "persian-todo-list",
   "version": "1.0.0",
   "private": true,
-  "homepage": ".",
+  "homepage": "https://YOUR_USERNAME.github.io/persian-todo-list",
   "dependencies": {
     "@fullcalendar/interaction": "^6.1.19",
     "@fullcalendar/moment": "^6.1.19",

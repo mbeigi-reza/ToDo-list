@@ -1,5 +1,6 @@
 // C:\Users\Dell\Desktop\ToDo-list\src\components\AddTaskPage\TaskForm.jsx
 import React from "react";
+import { FileText, Edit3 } from 'lucide-react';
 
 export default function TaskForm({ task, onTaskChange }) {
   return (
@@ -7,8 +8,8 @@ export default function TaskForm({ task, onTaskChange }) {
       {/* عنوان تسک */}
       <div className="bg-[#F8F5FF] p-4 rounded-lg border border-[#E1D8F1]">
         <div className="flex items-center justify-between mb-3">
-          <label className="text-[#673AB7] font-semibold text-lg flex items-center space-x-2 space-x-reverse">
-            <span className="text-xl">📝</span>
+          <label className="text-[#673AB7] font-semibold text-lg flex items-center gap-2">
+            <Edit3 className="w-5 h-5" />
             <span>عنوان تسک</span>
           </label>
         </div>
@@ -31,8 +32,8 @@ export default function TaskForm({ task, onTaskChange }) {
       {/* توضیحات تسک */}
       <div className="bg-[#F8F5FF] p-4 rounded-lg border border-[#E1D8F1]">
         <div className="flex items-center justify-between mb-3">
-          <label className="text-[#673AB7] font-semibold text-lg flex items-center space-x-2 space-x-reverse">
-            <span className="text-xl">📄</span>
+          <label className="text-[#673AB7] font-semibold text-lg flex items-center gap-2">
+            <FileText className="w-5 h-5" />
             <span>توضیحات</span>
           </label>
         </div>
@@ -58,7 +59,10 @@ export default function TaskForm({ task, onTaskChange }) {
           <h4 className="text-[#673AB7] font-semibold mb-2 text-right">پیشنمایش تسک:</h4>
           <div className="bg-white p-3 rounded-lg border border-[#C5B4E3]">
             {task.title && (
-              <div className="text-[#512DA8] font-medium mb-2 text-right">📌 {task.title}</div>
+              <div className="text-[#512DA8] font-medium mb-2 text-right flex items-center gap-2">
+                <Edit3 className="w-4 h-4" />
+                {task.title}
+              </div>
             )}
             {task.description && (
               <div className="text-[#673AB7] text-sm text-right leading-relaxed">
