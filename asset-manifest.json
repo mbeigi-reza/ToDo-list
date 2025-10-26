@@ -1,0 +1,14 @@
+{
+  "files": {
+    "main.css": "/REPOSITORY_NAME/static/css/main.b9f5203b.css",
+    "main.js": "/REPOSITORY_NAME/static/js/main.45d9520b.js",
+    "static/media/Vazir.ttf": "/REPOSITORY_NAME/static/media/Vazir.f4bbb37ad9da25275fb1.ttf",
+    "index.html": "/REPOSITORY_NAME/index.html",
+    "main.b9f5203b.css.map": "/REPOSITORY_NAME/static/css/main.b9f5203b.css.map",
+    "main.45d9520b.js.map": "/REPOSITORY_NAME/static/js/main.45d9520b.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.b9f5203b.css",
+    "static/js/main.45d9520b.js"
+  ]
+}
