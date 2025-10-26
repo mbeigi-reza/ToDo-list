@@ -201,52 +201,53 @@ export default function HorizontalCalendar({ selectedDate, onDateChange }) {
   };
 
   return (
-    <div className="bg-white p-4 shadow-lg">
-      {/* کنترل ماه */}
-      <div className="flex justify-between items-center mb-4">
+    <div className="bg-white p-2 xxs:p-3 xs:p-4 shadow-lg rounded-lg">
+      {/* کنترل ماه - کاملاً رسپانسیو */}
+      <div className="flex justify-between items-center mb-2 xxs:mb-3 xs:mb-4">
         <button
           onClick={handlePrevMonth}
-          className="px-4 py-2 bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors text-gray-700 flex items-center space-x-2 space-x-reverse"
+          className="px-2 xxs:px-3 xs:px-4 py-1 xxs:py-2 bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors text-gray-700 flex items-center space-x-1 xxs:space-x-2 space-x-reverse text-xxs xxs:text-xs xs:text-sm"
         >
-          <span>◀</span>
-          <span>ماه قبل</span>
+          <span className="text-xxs">◀</span>
+          <span className="hidden xxs:inline">ماه قبل</span>
         </button>
 
-        <div className="text-lg font-semibold text-gray-800 text-center">
-          {months[currentMonth.jm - 1]} {currentMonth.jy}
+        <div className="text-xs xxs:text-sm xs:text-base md:text-lg font-semibold text-gray-800 text-center px-1">
+          <div className="text-xxs xxs:text-xs xs:text-sm">{months[currentMonth.jm - 1]}</div>
+          <div className="text-xxs xxs:text-xs xs:text-sm">{currentMonth.jy}</div>
           {isCurrentMonthToday() && (
-            <div className="text-sm text-green-600 mt-1"></div>
+            <div className="text-xxs xxs:text-xs text-green-600 mt-0.5">امروز</div>
           )}
         </div>
 
         <button
           onClick={handleNextMonth}
-          className="px-4 py-2 bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors text-gray-700 flex items-center space-x-2 space-x-reverse"
+          className="px-2 xxs:px-3 xs:px-4 py-1 xxs:py-2 bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors text-gray-700 flex items-center space-x-1 xxs:space-x-2 space-x-reverse text-xxs xxs:text-xs xs:text-sm"
         >
-          <span>ماه بعد</span>
-          <span>▶</span>
+          <span className="hidden xxs:inline">ماه بعد</span>
+          <span className="text-xxs">▶</span>
         </button>
       </div>
 
-      {/* روزها */}
+      {/* روزها - کاملاً رسپانسیو */}
       <div
         ref={scrollContainerRef}
-        className="flex overflow-x-auto space-x-2 space-x-reverse pb-2 scrollbar-hide"
+        className="flex overflow-x-auto space-x-1 xxs:space-x-2 space-x-reverse pb-1 xxs:pb-2 scrollbar-hide"
         style={{ scrollBehavior: 'smooth' }}
       >
         {/* همه تسک‌ها */}
         <div
           onClick={handleShowAllTasks}
           className={`
-            min-w-[80px] p-3 rounded-xl text-center cursor-pointer transition-all flex flex-col items-center justify-center border-2 flex-shrink-0
+            min-w-[45px] xxs:min-w-[50px] xs:min-w-[60px] md:min-w-[80px] p-1 xxs:p-2 xs:p-3 rounded-xl text-center cursor-pointer transition-all flex flex-col items-center justify-center border-2 flex-shrink-0
             ${isAllTasksSelected
-              ? 'bg-[#673AB7] text-white shadow-lg transform scale-105 border-[#673AB7]'
+              ? 'bg-primary-600 text-white shadow-lg transform scale-105 border-primary-600'
               : 'bg-gray-50 hover:bg-gray-100 text-gray-700 border-gray-200 hover:border-gray-300'
             }
           `}
         >
-          <div className="text-lg mb-1">📋</div>
-          <div className="text-xs font-medium whitespace-nowrap">همه تسک‌ها</div>
+          <div className="text-sm xxs:text-base xs:text-lg mb-0.5 xxs:mb-1">📋</div>
+          <div className="text-[8px] xxs:text-[9px] xs:text-[10px] md:text-xs font-medium whitespace-nowrap">همه تسک‌ها</div>
         </div>
 
         {/* روزهای ماه */}
@@ -261,22 +262,22 @@ export default function HorizontalCalendar({ selectedDate, onDateChange }) {
               onClick={() => onDateChange(date)}
               data-today={today}
               className={`
-                min-w-[60px] p-2 rounded-xl text-center cursor-pointer transition-all flex flex-col items-center justify-center border-2 flex-shrink-0
+                min-w-[30px] xxs:min-w-[35px] xs:min-w-[45px] md:min-w-[60px] p-1 xxs:p-2 rounded-xl text-center cursor-pointer transition-all flex flex-col items-center justify-center border-2 flex-shrink-0
                 ${selected
-                  ? 'bg-[#673AB7] text-white shadow-lg transform scale-105 border-[#673AB7]'
+                  ? 'bg-primary-600 text-white shadow-lg transform scale-105 border-primary-600'
                   : today
-                    ? 'bg-[#E1D8F1] text-[#673AB7] border-[#673AB7]'
+                    ? 'bg-primary-100 text-primary-700 border-primary-600'
                     : 'bg-white text-gray-700 border-gray-200 hover:bg-gray-50 hover:border-gray-300'
                 }
               `}
             >
-              <div className={`text-xs font-medium ${today && !selected ? 'text-[#673AB7]' : ''}`}>
+              <div className={`text-[8px] xxs:text-[9px] xs:text-[10px] md:text-xs font-medium ${today && !selected ? 'text-primary-700' : ''}`}>
                 {getDayName(date)}
               </div>
-              <div className={`text-base font-bold mt-1 ${today && !selected ? 'text-[#673AB7]' : ''}`}>
+              <div className={`text-xs xxs:text-sm xs:text-base md:text-base font-bold mt-0.5 xxs:mt-1 ${today && !selected ? 'text-primary-700' : ''}`}>
                 {dayNumber}
               </div>
-              <div className="text-[10px] mt-1 opacity-70">
+              <div className="text-[6px] xxs:text-[7px] xs:text-[8px] md:text-[10px] mt-0.5 xxs:mt-1 opacity-70">
                 {date.toLocaleDateString('fa-IR', { month: 'short' })}
               </div>
             </div>
