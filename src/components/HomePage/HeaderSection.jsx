@@ -9,9 +9,9 @@ export default function HeaderSection() {
   };
 
   return (
-    <div className="h-[30vh] bg-[#673AB7] text-white p-6">
-      <div className="flex justify-between items-center mb-4">
-        <div>
+    <div className="h-[30vh] bg-[#673AB7] text-white p-6 w-full"> {/* ✅ تغییر اینجا */}
+      <div className="flex justify-between items-center mb-4 w-full"> {/* ✅ تغییر اینجا */}
+        <div className="w-full"> {/* ✅ تغییر اینجا */}
           <h1 className="text-2xl font-bold">امروز</h1>
           <p className="text-lg">۶ تسک</p>
         </div>
@@ -24,7 +24,7 @@ export default function HeaderSection() {
       </div>
       
       {/* نمایش تاریخ و ساعت شمسی */}
-      <div className="text-center">
+      <div className="text-center w-full"> {/* ✅ تغییر اینجا */}
         <div className="text-3xl font-bold">۱۴۰۳/۰۷/۲۷</div>
         <div className="text-lg">شنبه - ۱۰:۴۵ ق.ظ</div>
       </div>

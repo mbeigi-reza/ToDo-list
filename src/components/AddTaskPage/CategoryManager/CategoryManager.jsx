@@ -1,4 +1,3 @@
-// C:\Users\Dell\Desktop\ToDo-list\src\components\AddTaskPage\CategoryManager\CategoryManager.jsx
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import AddCategoryModal from './AddCategoryModal';
@@ -76,9 +75,9 @@ export default function CategoryManager() {
   const userCats = categories.filter(cat => !cat.isDefault);
 
   return (
-    <div className="min-h-screen bg-[#F5F5F5] p-4">
+    <div className="min-h-screen bg-[#F5F5F5] p-4 w-full">
       {/* هدر */}
-      <div className="bg-[#673AB7] text-white p-4 rounded-t-lg mb-4 shadow-md">
+      <div className="bg-[#673AB7] text-white p-4 rounded-t-lg mb-4 shadow-md w-full">
         <div className="flex items-center justify-between">
           <button 
             onClick={handleBack}
@@ -94,9 +93,9 @@ export default function CategoryManager() {
       </div>
 
       {/* محتوای اصلی */}
-      <div className="bg-white rounded-lg shadow-lg p-4">
+      <div className="bg-white rounded-lg shadow-lg p-4 w-full">
         {/* دکمه‌های action */}
-        <div className="flex gap-3 mb-6">
+        <div className="flex gap-3 mb-6 w-full">
           <button
             onClick={() => setIsModalOpen(true)}
             className="flex-1 bg-[#7C4DFF] hover:bg-[#673AB7] text-white font-semibold py-3 px-4 rounded-lg transition-colors duration-200 shadow-md flex items-center justify-center space-x-2 space-x-reverse"
@@ -116,16 +115,16 @@ export default function CategoryManager() {
 
         {/* دسته‌بندی‌های پیش‌فرض */}
         {defaultCats.length > 0 && (
-          <div className="mb-6">
+          <div className="mb-6 w-full">
             <h3 className="text-[#673AB7] font-semibold mb-3 text-right flex items-center">
               <span className="ml-2">📋</span>
               دسته‌بندی‌های پیش‌فرض
             </h3>
-            <div className="space-y-3">
+            <div className="space-y-3 w-full">
               {defaultCats.map((category) => (
                 <div
                   key={category.id}
-                  className="flex items-center justify-between p-4 rounded-lg border-2 border-transparent hover:shadow-md transition-all duration-200 relative"
+                  className="flex items-center justify-between p-4 rounded-lg border-2 border-transparent hover:shadow-md transition-all duration-200 relative w-full"
                   style={{ 
                     backgroundColor: category.color, 
                     color: ['#E1D8F1', '#C5B4E3', '#FFEAA7', '#96CEB4', '#4ECDC4', '#85C1E9'].includes(category.color) ? '#673AB7' : 'white'
@@ -160,16 +159,16 @@ export default function CategoryManager() {
 
         {/* دسته‌بندی‌های کاربر */}
         {userCats.length > 0 && (
-          <div className="mb-6">
+          <div className="mb-6 w-full">
             <h3 className="text-[#673AB7] font-semibold mb-3 text-right flex items-center">
               <span className="ml-2">👤</span>
               دسته‌بندی‌های شما
             </h3>
-            <div className="space-y-3">
+            <div className="space-y-3 w-full">
               {userCats.map((category) => (
                 <div
                   key={category.id}
-                  className="flex items-center justify-between p-4 rounded-lg border-2 border-transparent hover:shadow-md transition-all duration-200"
+                  className="flex items-center justify-between p-4 rounded-lg border-2 border-transparent hover:shadow-md transition-all duration-200 w-full"
                   style={{ 
                     backgroundColor: category.color, 
                     color: ['#E1D8F1', '#C5B4E3', '#FFEAA7', '#96CEB4', '#4ECDC4', '#85C1E9'].includes(category.color) ? '#673AB7' : 'white'
@@ -201,7 +200,7 @@ export default function CategoryManager() {
 
         {/* پیام وقتی هیچ دسته‌بندی‌ای وجود ندارد */}
         {categories.length === 0 && (
-          <div className="text-center py-8">
+          <div className="text-center py-8 w-full">
             <div className="text-6xl mb-4">📂</div>
             <p className="text-[#673AB7] mb-4">هیچ دسته‌بندی‌ای وجود ندارد</p>
             <button
@@ -214,7 +213,7 @@ export default function CategoryManager() {
         )}
 
         {/* راهنما */}
-        <div className="mt-6 p-4 bg-[#F8F5FF] rounded-lg border border-[#E1D8F1]">
+        <div className="mt-6 p-4 bg-[#F8F5FF] rounded-lg border border-[#E1D8F1] w-full">
           <h3 className="text-[#673AB7] font-semibold mb-2 text-center">راهنما</h3>
           <ul className="text-[#673AB7] text-sm text-right space-y-1">
             <li>• <strong>دسته‌بندی‌های پیش‌فرض</strong> قابل حذف هستند</li>

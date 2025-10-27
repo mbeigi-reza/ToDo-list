@@ -1,4 +1,3 @@
-// C:\Users\Dell\Desktop\ToDo-list\src\components\AddTaskPage\CategoryManager\AddCategoryModal.jsx
 import React, { useState } from 'react';
 
 export default function AddCategoryModal({ onClose, onSave, existingCategories }) {
@@ -59,11 +58,11 @@ export default function AddCategoryModal({ onClose, onSave, existingCategories }
   };
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4 w-full">
       <div className="bg-white rounded-lg shadow-xl w-full max-w-md">
         {/* هدر مودال */}
-        <div className="bg-[#673AB7] text-white p-4 rounded-t-lg">
-          <div className="flex items-center justify-between">
+        <div className="bg-[#673AB7] text-white p-4 rounded-t-lg w-full">
+          <div className="flex items-center justify-between w-full">
             <h2 className="text-xl font-bold">افزودن دسته‌بندی جدید</h2>
             <button
               onClick={onClose}
@@ -77,10 +76,10 @@ export default function AddCategoryModal({ onClose, onSave, existingCategories }
         </div>
 
         {/* فرم */}
-        <form onSubmit={handleSubmit} className="p-6 space-y-4">
+        <form onSubmit={handleSubmit} className="p-6 space-y-4 w-full">
           {/* نام دسته‌بندی */}
-          <div>
-            <label className="block text-[#673AB7] font-semibold mb-2 text-right">
+          <div className="w-full">
+            <label className="block text-[#673AB7] font-semibold mb-2 text-right w-full">
               نام دسته‌بندی
             </label>
             <input
@@ -100,8 +99,8 @@ export default function AddCategoryModal({ onClose, onSave, existingCategories }
           </div>
 
           {/* مقدار دسته‌بندی */}
-          <div>
-            <label className="block text-[#673AB7] font-semibold mb-2 text-right">
+          <div className="w-full">
+            <label className="block text-[#673AB7] font-semibold mb-2 text-right w-full">
               مقدار (فقط حروف لاتین)
             </label>
             <input
@@ -116,11 +115,11 @@ export default function AddCategoryModal({ onClose, onSave, existingCategories }
           </div>
 
           {/* انتخاب آیکون */}
-          <div>
-            <label className="block text-[#673AB7] font-semibold mb-2 text-right">
+          <div className="w-full">
+            <label className="block text-[#673AB7] font-semibold mb-2 text-right w-full">
               انتخاب آیکون
             </label>
-            <div className="grid grid-cols-10 gap-2 max-h-32 overflow-y-auto p-2 border border-[#C5B4E3] rounded-lg">
+            <div className="grid grid-cols-10 gap-2 max-h-32 overflow-y-auto p-2 border border-[#C5B4E3] rounded-lg w-full">
               {icons.map((icon, index) => (
                 <button
                   key={index}
@@ -137,11 +136,11 @@ export default function AddCategoryModal({ onClose, onSave, existingCategories }
           </div>
 
           {/* انتخاب رنگ */}
-          <div>
-            <label className="block text-[#673AB7] font-semibold mb-2 text-right">
+          <div className="w-full">
+            <label className="block text-[#673AB7] font-semibold mb-2 text-right w-full">
               انتخاب رنگ
             </label>
-            <div className="grid grid-cols-10 gap-2 p-2 border border-[#C5B4E3] rounded-lg">
+            <div className="grid grid-cols-10 gap-2 p-2 border border-[#C5B4E3] rounded-lg w-full">
               {colors.map((color, index) => (
                 <button
                   key={index}
@@ -157,18 +156,18 @@ export default function AddCategoryModal({ onClose, onSave, existingCategories }
           </div>
 
           {/* پیش‌نمایش */}
-          <div className="p-3 bg-gray-50 rounded-lg border border-[#C5B4E3]">
-            <label className="block text-[#673AB7] font-semibold mb-2 text-right">
+          <div className="p-3 bg-gray-50 rounded-lg border border-[#C5B4E3] w-full">
+            <label className="block text-[#673AB7] font-semibold mb-2 text-right w-full">
               پیش‌نمایش
             </label>
             <div
-              className="p-3 rounded-lg flex items-center justify-between text-right"
+              className="p-3 rounded-lg flex items-center justify-between text-right w-full"
               style={{ 
                 backgroundColor: formData.color,
                 color: ['#E1D8F1', '#C5B4E3', '#FFEAA7', '#96CEB4', '#4ECDC4', '#85C1E9'].includes(formData.color) ? '#673AB7' : 'white'
               }}
             >
-              <div className="flex items-center space-x-3 space-x-reverse">
+              <div className="flex items-center space-x-3 space-x-reverse w-full">
                 <span className="text-xl">{formData.icon}</span>
                 <span className="font-semibold">{formData.label || 'نام دسته‌بندی'}</span>
               </div>
@@ -177,7 +176,7 @@ export default function AddCategoryModal({ onClose, onSave, existingCategories }
           </div>
 
           {/* دکمه‌ها */}
-          <div className="flex gap-3 pt-4">
+          <div className="flex gap-3 pt-4 w-full">
             <button
               type="button"
               onClick={onClose}

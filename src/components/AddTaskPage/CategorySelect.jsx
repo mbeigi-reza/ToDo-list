@@ -1,4 +1,3 @@
-// C:\Users\Dell\Desktop\ToDo-list\src\components\AddTaskPage\CategorySelect.jsx
 import React, { useState, useEffect } from "react";
 
 export default function CategorySelect({ category, onCategoryChange }) {
@@ -26,9 +25,9 @@ export default function CategorySelect({ category, onCategoryChange }) {
 
   if (categories.length === 0) {
     return (
-      <div className="bg-[#F8F5FF] p-4 rounded-lg border border-[#E1D8F1] mb-6">
+      <div className="bg-[#F8F5FF] p-4 rounded-lg border border-[#E1D8F1] mb-6 w-full"> {/* ✅ تغییر اینجا */}
         <h3 className="text-[#673AB7] font-semibold mb-4 text-lg text-right">انتخاب دسته‌بندی</h3>
-        <div className="text-center py-8">
+        <div className="text-center py-8 w-full"> {/* ✅ تغییر اینجا */}
           <p className="text-[#673AB7] mb-4">در حال بارگذاری دسته‌بندی‌ها...</p>
         </div>
       </div>
@@ -36,10 +35,10 @@ export default function CategorySelect({ category, onCategoryChange }) {
   }
 
   return (
-    <div className="bg-[#F8F5FF] p-4 rounded-lg border border-[#E1D8F1] mb-6">
+    <div className="bg-[#F8F5FF] p-4 rounded-lg border border-[#E1D8F1] mb-6 w-full"> {/* ✅ تغییر اینجا */}
       <h3 className="text-[#673AB7] font-semibold mb-4 text-lg text-right">انتخاب دسته‌بندی</h3>
       
-      <div className="space-y-3">
+      <div className="space-y-3 w-full"> {/* ✅ تغییر اینجا */}
         {categories.map((cat) => (
           <button
             key={cat.value}
@@ -55,7 +54,7 @@ export default function CategorySelect({ category, onCategoryChange }) {
               color: ['#E1D8F1', '#C5B4E3', '#FFEAA7', '#96CEB4', '#4ECDC4', '#85C1E9'].includes(cat.color) ? '#673AB7' : 'white'
             }}
           >
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-3 w-full"> {/* ✅ تغییر اینجا */}
               <span className="text-2xl">{cat.icon}</span>
               <span className="font-medium text-lg text-right">{cat.label}</span>
             </div>
@@ -72,13 +71,13 @@ export default function CategorySelect({ category, onCategoryChange }) {
       </div>
 
       {!category && (
-        <div className="mt-4 p-3 bg-white border border-[#C5B4E3] rounded-lg text-center">
+        <div className="mt-4 p-3 bg-white border border-[#C5B4E3] rounded-lg text-center w-full"> {/* ✅ تغییر اینجا */}
           <span className="text-[#673AB7] text-sm">لطفاً یک دسته‌بندی انتخاب کنید</span>
         </div>
       )}
 
       {category && (
-        <div className="mt-4 p-3 bg-[#E1D8F1] border border-[#7C4DFF] rounded-lg text-center">
+        <div className="mt-4 p-3 bg-[#E1D8F1] border border-[#7C4DFF] rounded-lg text-center w-full"> {/* ✅ تغییر اینجا */}
           <span className="text-[#673AB7] font-medium">
             دسته‌بندی انتخاب شده: {categories.find(cat => cat.value === category)?.label}
           </span>

@@ -1,4 +1,3 @@
-// C:\Users\Dell\Desktop\ToDo-list\src\components\HomePage\HomePage.jsx
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTasks } from '../../context/TaskContext';
@@ -73,13 +72,13 @@ export default function HomePage() {
   };
 
   return (
-    <div className="min-h-screen bg-white min-w-xxxs">
+    <div className="min-h-screen bg-white w-full overflow-x-hidden">
       {/* هدر کاملاً رسپانسیو */}
-      <div className="bg-primary-600 text-white pt-2 xxxs:pt-3 xxs:pt-4 xs:pt-6 pb-1 xxxs:pb-2 xxs:pb-3 xs:pb-4 px-1 xxxs:px-2 xxs:px-3 xs:px-4">
-        <div className="flex flex-col xxxs:flex-row xxxs:justify-between xxxs:items-start gap-1 xxxs:gap-2 xs:gap-3">
+      <div className="bg-[#673AB7] text-white pt-2 xxxs:pt-3 xxs:pt-4 xs:pt-6 pb-1 xxxs:pb-2 xxs:pb-3 xs:pb-4 px-4 w-full mx-0">
+        <div className="flex flex-col xxxs:flex-row xxxs:justify-between xxxs:items-start gap-1 xxxs:gap-2 xs:gap-3 mx-0">
           {/* بخش اطلاعات اصلی */}
-          <div className="flex-1 min-w-0">
-            <div className="flex items-start gap-1 xxxs:gap-2 xxs:gap-3">
+          <div className="flex-1 min-w-0 mx-0">
+            <div className="flex items-start gap-1 xxxs:gap-2 xxs:gap-3 mx-0">
               {/* آیکون وضعیت */}
               <div className="bg-white bg-opacity-20 p-1.5 xxxs:p-2 xxs:p-3 rounded-lg flex-shrink-0 mt-0.5">
                 <div className="text-white">
@@ -88,16 +87,16 @@ export default function HomePage() {
               </div>
               
               {/* متن‌ها */}
-              <div className="flex-1 min-w-0 overflow-hidden">
-                <div className="flex flex-col xxxs:flex-row xxxs:items-center gap-0.5 xxxs:gap-1 xxs:gap-2">
-                  <h1 className="text-sm xxxs:text-base xxs:text-lg xs:text-xl font-bold truncate">{getPageTitle()}</h1>
+              <div className="flex-1 min-w-0 overflow-hidden mx-0">
+                <div className="flex flex-col xxxs:flex-row xxxs:items-center gap-0.5 xxxs:gap-1 xxs:gap-2 mx-0">
+                  <h1 className="text-sm xxxs:text-base xxs:text-lg xs:text-xl font-bold truncate mx-0">{getPageTitle()}</h1>
                   {selectedDate !== null && (
                     <span className="bg-white bg-opacity-20 px-1.5 xxxs:px-2 xxs:px-3 py-0.5 xxxs:py-1 rounded-full text-xxxs xxxs:text-xxs xxs:text-xs self-start xxxs:self-auto whitespace-nowrap flex-shrink-0 mt-0.5 xxxs:mt-0">
                       {getDayName(selectedDate)}
                     </span>
                   )}
                 </div>
-                <p className="text-xxxs xxxs:text-xxs xxs:text-xs xs:text-sm opacity-90 mt-0.5 xxxs:mt-1 whitespace-nowrap">
+                <p className="text-xxxs xxxs:text-xxs xxs:text-xs xs:text-sm opacity-90 mt-0.5 xxxs:mt-1 whitespace-nowrap mx-0">
                   {totalTasks} تسک • {completedTasks} انجام شده
                 </p>
               </div>
@@ -105,7 +104,7 @@ export default function HomePage() {
             
             {/* نوار پیشرفت - در موبایل‌های بسیار کوچک مخفی */}
             {totalTasks > 0 && (
-              <div className="hidden xxxs:block bg-white bg-opacity-20 rounded-full h-1 xxxs:h-1.5 xs:h-2 mt-1 xxxs:mt-2 xs:mt-3">
+              <div className="hidden xxxs:block bg-white bg-opacity-20 rounded-full h-1 xxxs:h-1.5 xs:h-2 mt-1 xxxs:mt-2 xs:mt-3 mx-0">
                 <div 
                   className="bg-green-400 h-1 xxxs:h-1.5 xs:h-2 rounded-full transition-all duration-500"
                   style={{ width: `${completionPercentage}%` }}
@@ -115,10 +114,10 @@ export default function HomePage() {
           </div>
           
           {/* دکمه‌های عمل - کاملاً فشرده - سمت راست */}
-          <div className="flex flex-row xxxs:flex-col mb-4 gap-0.5 xxxs:gap-1 xxs:gap-2 mt-1 xxxs:mt-2 xxs:mt-0">
+          <div className="flex flex-row xxxs:flex-col mb-4 gap-0.5 xxxs:gap-1 xxs:gap-2 mt-1 xxxs:mt-2 xxs:mt-0 mx-0">
             <button 
               onClick={() => navigate('/add')}
-              className="flex-1 xxxs:flex-none bg-white text-primary-600 px-1.5 xxxs:px-2 xxs:px-3 xs:py-3 rounded-lg font-semibold text-xxxs xxxs:text-xxs xxs:text-xs xs:text-sm flex items-center justify-center gap-0.5 xxxs:gap-1 xxs:gap-2 hover:bg-opacity-90 transition-all whitespace-nowrap min-h-[1.75rem] xxxs:min-h-[2rem] xxs:min-h-[2.5rem]"
+              className="flex-1 xxxs:flex-none bg-white text-[#673AB7] px-1.5 xxxs:px-2 xxs:px-3 xs:py-3 rounded-lg font-semibold text-xxxs xxxs:text-xxs xxs:text-xs xs:text-sm flex items-center justify-center gap-0.5 xxxs:gap-1 xxs:gap-2 hover:bg-opacity-90 transition-all whitespace-nowrap min-h-[1.75rem] xxxs:min-h-[2rem] xxs:min-h-[2.5rem]"
             >
               <span>تسک جدید</span>
               <AddTaskIcon />
@@ -136,7 +135,7 @@ export default function HomePage() {
 
         {/* اطلاعات آماری - در موبایل‌های بسیار کوچک مخفی */}
         {selectedDate !== null && totalTasks > 0 && (
-          <div className="hidden xxxs:flex justify-end mt-1 xxxs:mt-2 xs:mt-3 pt-1 xxxs:pt-2 xs:pt-3 border-t border-white border-opacity-20">
+          <div className="hidden xxxs:flex justify-end mt-1 xxxs:mt-2 xs:mt-3 pt-1 xxxs:pt-2 xs:pt-3 border-t border-white border-opacity-20 mx-0">
             <div className="bg-white bg-opacity-20 px-1.5 xxxs:px-2 xs:px-3 py-0.5 xxxs:py-1 rounded-full text-xxxs xxxs:text-xxs xxs:text-xs">
               {completionPercentage}% تکمیل شده
             </div>
@@ -145,7 +144,7 @@ export default function HomePage() {
       </div>
 
       {/* تقویم افقی */}
-      <div className="bg-white mx-0.5 xxxs:mx-1 xxs:mx-2 xs:mx-4 -mt-1 xxxs:-mt-2 xxs:-mt-3 xs:-mt-4 rounded-lg shadow-lg p-1 xxxs:p-2 xxs:p-3 xs:p-4 z-10 relative">
+      <div className="bg-white mx-0 px-4 -mt-1 xxxs:-mt-2 xxs:-mt-3 xs:-mt-4 rounded-lg shadow-lg p-1 xxxs:p-2 xxs:p-3 xs:p-4 z-10 relative w-full">
         <HorizontalCalendar 
           selectedDate={selectedDate} 
           onDateChange={setSelectedDate} 
@@ -153,8 +152,8 @@ export default function HomePage() {
       </div>
 
       {/* لیست تسک‌ها */}
-      <div className="p-1 xxxs:p-2 xxs:p-3 xs:p-4 md:p-6">
-        <h2 className="text-xs xxxs:text-sm xxs:text-base xs:text-lg md:text-xl font-bold mb-1 xxxs:mb-2 xxs:mb-3 xs:mb-4 md:mb-6 text-right text-gray-800 truncate">
+      <div className="p-4 w-full mx-0">
+        <h2 className="text-xs xxxs:text-sm xxs:text-base xs:text-lg md:text-xl font-bold mb-1 xxxs:mb-2 xxs:mb-3 xs:mb-4 md:mb-6 text-right text-gray-800 truncate mx-0">
           {selectedDate === null 
             ? "همه تسک‌های شما" 
             : isToday(selectedDate) 
@@ -164,7 +163,7 @@ export default function HomePage() {
         </h2>
         
         {filteredTasks.length === 0 ? (
-          <div className="text-center py-2 xxxs:py-4 xxs:py-6 xs:py-8">
+          <div className="text-center py-2 xxxs:py-4 xxs:py-6 xs:py-8 mx-0">
             <div className="text-gray-400 mb-1 xxxs:mb-2 xxs:mb-3 xs:mb-4">
               {selectedDate === null ? 
                 <ListTodo className="w-8 h-8 xxxs:w-12 xxxs:h-12 xxs:w-16 xxs:h-16 xs:w-20 xs:h-20 md:w-24 md:h-24 mx-auto" /> : 
@@ -173,7 +172,7 @@ export default function HomePage() {
                 <Calendar className="w-8 h-8 xxxs:w-12 xxxs:h-12 xxs:w-16 xxs:h-16 xs:w-20 xs:h-20 md:w-24 md:h-24 mx-auto" />
               }
             </div>
-            <p className="text-gray-500 mb-1 xxxs:mb-2 xxs:mb-3 xs:mb-4 text-xxxs xxxs:text-xxs xxs:text-xs xs:text-sm md:text-base px-0.5 xxxs:px-1 xxs:px-2 text-ellipsis-2">
+            <p className="text-gray-500 mb-1 xxxs:mb-2 xxs:mb-3 xs:mb-4 text-xxxs xxxs:text-xxs xxs:text-xs xs:text-sm md:text-base px-0.5 xxxs:px-1 xxs:px-2 text-ellipsis-2 mx-0">
               {selectedDate === null 
                 ? 'هنوز هیچ تسکی ایجاد نکرده‌اید' 
                 : isToday(selectedDate)
@@ -183,7 +182,7 @@ export default function HomePage() {
             </p>
             <button 
               onClick={() => navigate('/add')}
-              className="bg-primary-500 hover:bg-primary-600 text-white px-2 xxxs:px-3 xxs:px-4 xs:px-6 py-0.5 xxxs:py-1 xxs:py-2 rounded-lg font-medium text-xxxs xxxs:text-xxs xxs:text-xs xs:text-sm md:text-base flex items-center justify-center gap-0.5 xxxs:gap-1 xxs:gap-2 mx-auto"
+              className="bg-[#7C4DFF] hover:bg-[#673AB7] text-white px-2 xxxs:px-3 xxs:px-4 xs:px-6 py-0.5 xxxs:py-1 xxs:py-2 rounded-lg font-medium text-xxxs xxxs:text-xxs xxs:text-xs xs:text-sm md:text-base flex items-center justify-center gap-0.5 xxxs:gap-1 xxs:gap-2 mx-auto"
             >
               <span>افزودن تسک جدید</span>
               <AddTaskIcon />

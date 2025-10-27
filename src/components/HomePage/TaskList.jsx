@@ -1,4 +1,3 @@
-// C:\Users\Dell\Desktop\ToDo-list\src\components\HomePage\TaskList.jsx
 import React, { useState } from 'react';
 import { useTasks } from '../../context/TaskContext';
 import { useNavigate } from 'react-router-dom';
@@ -69,20 +68,20 @@ export default function TaskList({ tasks, selectedDate }) {
   };
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-4 w-full">
       {tasks.map((task, index) => {
         const categoryInfo = getCategoryInfo(task.category);
         
         return (
           <div 
             key={task.id}
-            className={`bg-white rounded-2xl shadow-sm border border-gray-100 p-4 hover:shadow-md transition-all ${
+            className={`bg-white rounded-2xl shadow-sm border border-gray-100 p-4 hover:shadow-md transition-all w-full ${
               task.completed ? 'opacity-70 bg-green-50 border-green-200' : ''
             }`}
           >
             {/* هدر تسک */}
-            <div className="flex justify-between items-start mb-3">
-              <div className="flex items-center gap-3 flex-1">
+            <div className="flex justify-between items-start mb-3 w-full">
+              <div className="flex items-center gap-3 flex-1 w-full">
                 {/* دکمه تکمیل/عدم تکمیل */}
                 <button
                   onClick={() => toggleTaskCompletion(task.id)}
@@ -98,7 +97,7 @@ export default function TaskList({ tasks, selectedDate }) {
                 
                 {/* عنوان تسک - حالت نمایش یا ویرایش */}
                 {editingTask === task.id ? (
-                  <div className="flex-1">
+                  <div className="flex-1 w-full">
                     <input
                       type="text"
                       value={editForm.title}
@@ -108,7 +107,7 @@ export default function TaskList({ tasks, selectedDate }) {
                     />
                   </div>
                 ) : (
-                  <h3 className={`font-semibold text-right text-lg flex-1 ${
+                  <h3 className={`font-semibold text-right text-lg flex-1 w-full ${
                     task.completed ? 'line-through text-gray-500' : 'text-gray-800'
                   }`}>
                     {task.title}
@@ -174,7 +173,7 @@ export default function TaskList({ tasks, selectedDate }) {
             
             {/* توضیحات تسک - حالت نمایش یا ویرایش */}
             {editingTask === task.id ? (
-              <div className="mb-3">
+              <div className="mb-3 w-full">
                 <textarea
                   value={editForm.description}
                   onChange={(e) => setEditForm(prev => ({ ...prev, description: e.target.value }))}
@@ -185,7 +184,7 @@ export default function TaskList({ tasks, selectedDate }) {
               </div>
             ) : (
               task.description && (
-                <p className={`text-gray-600 text-right text-sm leading-6 mb-3 ${
+                <p className={`text-gray-600 text-right text-sm leading-6 mb-3 w-full ${
                   task.completed ? 'line-through' : ''
                 }`}>
                   {task.description}
@@ -194,7 +193,7 @@ export default function TaskList({ tasks, selectedDate }) {
             )}
             
             {/* اطلاعات پایین تسک */}
-            <div className="flex justify-between items-center text-xs text-gray-400">
+            <div className="flex justify-between items-center text-xs text-gray-400 w-full">
               <span>
                 {task.date ? new Date(task.date).toLocaleDateString('fa-IR') : 'بدون تاریخ'}
               </span>
@@ -206,7 +205,7 @@ export default function TaskList({ tasks, selectedDate }) {
             
             {/* وضعیت انجام شده */}
             {task.completed && (
-              <div className="mt-2 flex items-center justify-end gap-1">
+              <div className="mt-2 flex items-center justify-end gap-1 w-full">
                 <CheckCircle2 className="w-4 h-4 text-green-600" />
                 <span className="text-green-600 text-xs">انجام شده</span>
                 <span className="text-green-600 text-xs">
@@ -217,8 +216,8 @@ export default function TaskList({ tasks, selectedDate }) {
             
             {/* خط جداکننده بین تسک‌ها */}
             {index < tasks.length - 1 && (
-              <div className="border-t border-gray-100 mt-4 pt-4">
-                <div className="flex items-center justify-between text-xs text-gray-400">
+              <div className="border-t border-gray-100 mt-4 pt-4 w-full">
+                <div className="flex items-center justify-between text-xs text-gray-400 w-full">
                   <span>بعدی: {tasks[index + 1]?.title}</span>
                   <span>{formatTime(tasks[index + 1]?.time)}</span>
                 </div>
@@ -230,10 +229,10 @@ export default function TaskList({ tasks, selectedDate }) {
 
       {/* دکمه افزودن تسک جدید وقتی لیست خالیه */}
       {tasks.length === 0 && (
-        <div className="text-center py-8">
+        <div className="text-center py-8 w-full">
           <button 
             onClick={handleAddTask}
-            className="bg-[#7C4DFF] hover:bg-[#673AB7] text-white px-6 py-3 rounded-lg font-medium transition-colors shadow-md flex items-center justify-center gap-2 mx-auto"
+            className="bg-[#7C4DFF] hover:bg-[#673AB7] text-white px-6 py-3 rounded-lg font-medium transition-colors shadow-md flex items-center justify-center gap-2 mx-auto w-full"
           >
             <Plus className="w-5 h-5" />
             <span>افزودن اولین تسک</span>

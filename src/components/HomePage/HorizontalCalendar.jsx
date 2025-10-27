@@ -1,12 +1,12 @@
 import React, { useState, useEffect, useRef } from 'react';
 
-// ✅ تابع تشخیص کبیسه بودن سال شمسی
+// تابع تشخیص کبیسه بودن سال شمسی
 function isJalaliLeapYear(jy) {
   const mod = jy % 33;
   return [1, 5, 9, 13, 17, 22, 26, 30].includes(mod);
 }
 
-// ✅ تبدیل میلادی به شمسی
+// تبدیل میلادی به شمسی
 function toJalali(gDate) {
   const gy = gDate.getFullYear();
   const gm = gDate.getMonth() + 1;
@@ -49,7 +49,7 @@ function toJalali(gDate) {
   return { jy, jm: jm + 1, jd };
 }
 
-// ✅ تبدیل شمسی به میلادی
+// تبدیل شمسی به میلادی
 function jalaliToGregorian(jy, jm, jd) {
   const isLeap = isJalaliLeapYear(jy);
   jy -= 979;
@@ -104,7 +104,7 @@ export default function HorizontalCalendar({ selectedDate, onDateChange }) {
   const [days, setDays] = useState([]);
   const scrollContainerRef = useRef(null);
 
-  // ✅ تولید روزهای دقیق ماه
+  // تولید روزهای دقیق ماه
   useEffect(() => {
     const generateDays = () => {
       const isLeap = isJalaliLeapYear(currentMonth.jy);
@@ -125,7 +125,7 @@ export default function HorizontalCalendar({ selectedDate, onDateChange }) {
     generateDays();
   }, [currentMonth]);
 
-  // ✅ انتخاب و اسکرول به امروز
+  // انتخاب و اسکرول به امروز
   useEffect(() => {
     const today = new Date();
     onDateChange(today);
@@ -201,9 +201,9 @@ export default function HorizontalCalendar({ selectedDate, onDateChange }) {
   };
 
   return (
-    <div className="bg-white p-1 xxxs:p-2 xxs:p-3 xs:p-4 shadow-lg rounded-lg">
-      {/* کنترل ماه - کاملاً رسپانسیو */}
-      <div className="flex justify-between items-center mb-1 xxxs:mb-2 xxs:mb-3 xs:mb-4">
+    <div className="bg-white p-1 xxxs:p-2 xxs:p-3 xs:p-4 shadow-lg rounded-lg w-full mx-0 px-0">
+      {/* کنترل ماه */}
+      <div className="flex justify-between items-center mb-1 xxxs:mb-2 xxs:mb-3 xs:mb-4 w-full mx-0 px-0">
         <button
           onClick={handleNextMonth}
           className="px-1.5 xxxs:px-2 xxs:px-3 xs:px-4 py-0.5 xxxs:py-1 xxs:py-2 bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors text-gray-700 flex items-center gap-0.5 xxxs:gap-1 xxs:gap-2 text-xxxs xxxs:text-xxs xxs:text-xs xs:text-sm"
@@ -229,11 +229,14 @@ export default function HorizontalCalendar({ selectedDate, onDateChange }) {
         </button>
       </div>
 
-      {/* روزها - کاملاً رسپانسیو - از راست به چپ */}
+      {/* روزها */}
       <div
         ref={scrollContainerRef}
-        className="flex overflow-x-auto gap-0.5 xxxs:gap-1 xxs:gap-2 pb-0.5 xxxs:pb-1 xxs:pb-2 scrollbar-hide"
-        style={{ scrollBehavior: 'smooth', direction: 'ltr' }}
+        className="flex overflow-x-auto gap-0.5 xxxs:gap-1 xxs:gap-2 pb-0.5 xxxs:pb-1 xxs:pb-2 scrollbar-hide w-full mx-0 px-0"
+        style={{ 
+          scrollBehavior: 'smooth', 
+          direction: 'ltr'
+        }}
       >
         {/* همه تسک‌ها */}
         <div
@@ -243,7 +246,7 @@ export default function HorizontalCalendar({ selectedDate, onDateChange }) {
             p-0.5 xxxs:p-1 xxs:p-2 xs:p-3 rounded-xl text-center cursor-pointer transition-all 
             flex flex-col items-center justify-center border-2 flex-shrink-0
             ${isAllTasksSelected
-              ? 'bg-primary-600 text-white shadow-lg transform scale-105 border-primary-600'
+              ? 'bg-blue-600 text-white shadow-lg transform scale-105 border-blue-600'
               : 'bg-gray-50 hover:bg-gray-100 text-gray-700 border-gray-200 hover:border-gray-300'
             }
           `}
@@ -270,17 +273,17 @@ export default function HorizontalCalendar({ selectedDate, onDateChange }) {
                 p-0.5 xxxs:p-1 xxs:p-2 rounded-xl text-center cursor-pointer transition-all 
                 flex flex-col items-center justify-center border-2 flex-shrink-0
                 ${selected
-                  ? 'bg-primary-600 text-white shadow-lg transform scale-105 border-primary-600'
+                  ? 'bg-blue-600 text-white shadow-lg transform scale-105 border-blue-600'
                   : today
-                    ? 'bg-primary-100 text-primary-700 border-primary-600'
+                    ? 'bg-blue-100 text-blue-700 border-blue-600'
                     : 'bg-white text-gray-700 border-gray-200 hover:bg-gray-50 hover:border-gray-300'
                 }
               `}
             >
-              <div className={`text-[7px] xxxs:text-[8px] xxs:text-[9px] xs:text-[10px] md:text-xs font-medium ${today && !selected ? 'text-primary-700' : ''}`}>
+              <div className={`text-[7px] xxxs:text-[8px] xxs:text-[9px] xs:text-[10px] md:text-xs font-medium ${today && !selected ? 'text-blue-700' : ''}`}>
                 {getDayName(date)}
               </div>
-              <div className={`text-[10px] xxxs:text-xs xxs:text-sm xs:text-base md:text-base font-bold mt-0.5 ${today && !selected ? 'text-primary-700' : ''}`}>
+              <div className={`text-[10px] xxxs:text-xs xxs:text-sm xs:text-base md:text-base font-bold mt-0.5 ${today && !selected ? 'text-blue-700' : ''}`}>
                 {dayNumber}
               </div>
               <div className="text-[5px] xxxs:text-[6px] xxs:text-[7px] xs:text-[8px] md:text-[10px] mt-0.5 opacity-70">

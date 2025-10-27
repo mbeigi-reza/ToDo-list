@@ -1,4 +1,3 @@
-// C:\Users\Dell\Desktop\ToDo-list\src\components\AddTaskPage\AddTaskPage.jsx
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useTasks } from "../../context/TaskContext";
@@ -81,9 +80,9 @@ export default function AddTaskPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#F5F5F5] p-4">
+    <div className="min-h-screen bg-[#F5F5F5] p-4 w-full">
       {/* هدر */}
-      <div className="bg-[#673AB7] text-white p-4 rounded-t-lg mb-4 shadow-md">
+      <div className="bg-[#673AB7] text-white p-4 rounded-t-lg mb-4 shadow-md w-full">
         <div className="flex items-center justify-between">
           <button 
             onClick={() => navigate(-1)}
@@ -99,10 +98,10 @@ export default function AddTaskPage() {
       </div>
 
       {/* محتوای اصلی */}
-      <div className="bg-white rounded-lg shadow-lg p-4">
+      <div className="bg-white rounded-lg shadow-lg p-4 w-full">
         {/* بخش تاریخ با قابلیت فعال/غیرفعال */}
-        <div className="mb-6">
-          <div className="flex items-center justify-between mb-3">
+        <div className="mb-6 w-full">
+          <div className="flex items-center justify-between mb-3 w-full">
             <h3 className="text-[#673AB7] font-semibold text-lg">تاریخ تسک</h3>
             <button
               onClick={toggleDateEnabled}
@@ -120,7 +119,7 @@ export default function AddTaskPage() {
           </div>
 
           {isDateEnabled ? (
-            <div className="bg-[#F8F5FF] p-4 rounded-lg border border-[#E1D8F1]">
+            <div className="bg-[#F8F5FF] p-4 rounded-lg border border-[#E1D8F1] w-full">
               <Calendar 
                 selectedDate={selectedDate} 
                 onDateChange={handleDateChange} 
@@ -131,7 +130,7 @@ export default function AddTaskPage() {
               </div>
             </div>
           ) : (
-            <div className="bg-[#F8F5FF] p-4 rounded-lg border border-[#E1D8F1] text-center">
+            <div className="bg-[#F8F5FF] p-4 rounded-lg border border-[#E1D8F1] text-center w-full">
               <CalendarIcon className="w-8 h-8 text-[#673AB7] mx-auto mb-2" />
               <p className="text-[#673AB7]">این تسک برای همه روزها فعال خواهد بود</p>
             </div>
@@ -139,12 +138,12 @@ export default function AddTaskPage() {
         </div>
 
         {/* انتخاب دسته‌بندی */}
-        <div className="mb-6">
+        <div className="mb-6 w-full">
           <div 
             onClick={toggleCategory}
-            className="bg-[#F8F5FF] p-4 rounded-lg border border-[#E1D8F1] cursor-pointer hover:bg-[#F0EBFF] transition-colors"
+            className="bg-[#F8F5FF] p-4 rounded-lg border border-[#E1D8F1] cursor-pointer hover:bg-[#F0EBFF] transition-colors w-full"
           >
-            <div className="flex items-center justify-between">
+            <div className="flex items-center justify-between w-full">
               <h3 className="text-[#673AB7] font-semibold text-lg">
                 انتخاب دسته‌بندی
               </h3>
@@ -167,7 +166,7 @@ export default function AddTaskPage() {
           </div>
 
           {isCategoryOpen && (
-            <div className="mt-2">
+            <div className="mt-2 w-full">
               <CategorySelect category={category} onCategoryChange={handleCategoryChange} />
             </div>
           )}
@@ -182,7 +181,7 @@ export default function AddTaskPage() {
         </div>
 
         {/* فرم عنوان و توضیحات */}
-        <div className="mb-6">
+        <div className="mb-6 w-full">
           <TaskForm task={task} onTaskChange={handleTaskChange} />
         </div>
 

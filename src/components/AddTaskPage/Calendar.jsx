@@ -1,4 +1,3 @@
-// C:\Users\Dell\Desktop\ToDo-list\src\components\AddTaskPage\Calendar.jsx
 import React, { useState, useEffect } from "react";
 
 // توابع تبدیل تاریخ (همان کد قبلی)
@@ -173,7 +172,7 @@ export default function JalaliCalendar({ selectedDate, onDateChange }) {
 
   return (
     <div className="w-full mb-4 p-4 border rounded-lg bg-white shadow-sm">
-      <div className="flex justify-between items-center mb-4">
+      <div className="flex justify-between items-center mb-4 w-full"> {/* ✅ تغییر اینجا */}
         {/* دکمه ماه قبل - سمت راست */}
         <button
           onClick={handleNextMonth}
@@ -195,7 +194,7 @@ export default function JalaliCalendar({ selectedDate, onDateChange }) {
         </button>
       </div>
 
-      <div className="grid grid-cols-7 gap-2 text-center">
+      <div className="grid grid-cols-7 gap-2 text-center w-full"> {/* ✅ تغییر اینجا */}
         {["ش", "ی", "د", "س", "چ", "پ", "ج"].map((day) => (
           <div key={day} className="font-bold py-2 text-gray-600 text-sm">{day}</div>
         ))}
@@ -209,7 +208,7 @@ export default function JalaliCalendar({ selectedDate, onDateChange }) {
             <div
               key={i}
               className={`
-                border h-10 flex items-center justify-center rounded-lg cursor-pointer transition-all relative
+                border h-10 flex items-center justify-center rounded-lg cursor-pointer transition-all relative w-full
                 ${!day ? 'invisible' : ''}
                 ${!selectable ? 
                   'bg-gray-100 text-gray-400 cursor-not-allowed' : 
