@@ -171,32 +171,32 @@ export default function JalaliCalendar({ selectedDate, onDateChange }) {
   ];
 
   return (
-    <div className="w-full mb-4 p-4 border rounded-lg bg-white shadow-sm">
-      <div className="flex justify-between items-center mb-4 w-full"> {/* ✅ تغییر اینجا */}
+    <div className="w-full mb-4 p-4 border border-gray-200 dark:border-gray-700 rounded-lg bg-white dark:bg-gray-800 shadow-sm transition-colors duration-300">
+      <div className="flex justify-between items-center mb-4 w-full">
         {/* دکمه ماه قبل - سمت راست */}
         <button
           onClick={handleNextMonth}
-          className="px-3 py-2 bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors text-gray-700"
+          className="px-3 py-2 bg-gray-100 dark:bg-gray-700 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors text-gray-700 dark:text-gray-300"
         >
           ▶
         </button>
         
-        <h2 className="text-lg font-semibold text-gray-800">
+        <h2 className="text-lg font-semibold text-gray-800 dark:text-gray-200 transition-colors duration-300">
           {months[currentJDate.jm - 1]} {currentJDate.jy}
         </h2>
         
         {/* دکمه ماه بعد - سمت چپ */}
         <button
           onClick={handlePrevMonth}
-          className="px-3 py-2 bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors text-gray-700"
+          className="px-3 py-2 bg-gray-100 dark:bg-gray-700 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors text-gray-700 dark:text-gray-300"
         >
           ◀
         </button>
       </div>
 
-      <div className="grid grid-cols-7 gap-2 text-center w-full"> {/* ✅ تغییر اینجا */}
+      <div className="grid grid-cols-7 gap-2 text-center w-full">
         {["ش", "ی", "د", "س", "چ", "پ", "ج"].map((day) => (
-          <div key={day} className="font-bold py-2 text-gray-600 text-sm">{day}</div>
+          <div key={day} className="font-bold py-2 text-gray-600 dark:text-gray-400 text-sm transition-colors duration-300">{day}</div>
         ))}
 
         {days.map((day, i) => {
@@ -211,19 +211,19 @@ export default function JalaliCalendar({ selectedDate, onDateChange }) {
                 border h-10 flex items-center justify-center rounded-lg cursor-pointer transition-all relative w-full
                 ${!day ? 'invisible' : ''}
                 ${!selectable ? 
-                  'bg-gray-100 text-gray-400 cursor-not-allowed' : 
+                  'bg-gray-100 dark:bg-gray-900 text-gray-400 dark:text-gray-600 cursor-not-allowed' : 
                   selected ? 
-                    'bg-[#7C4DFF] text-white shadow-lg transform scale-105' : 
+                    'bg-blue-600 text-white shadow-lg transform scale-105' : 
                     today ? 
-                      'bg-[#E1D8F1] text-[#673AB7] border-2 border-[#673AB7]' : 
-                      'bg-white text-gray-700 border border-gray-200 hover:bg-gray-50 hover:border-gray-300'
+                      'bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-300 border-2 border-blue-600 dark:border-blue-500' : 
+                      'bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-300 border border-gray-200 dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-600 hover:border-gray-300 dark:hover:border-gray-500'
                 }
               `}
               onClick={() => selectable && day && onDateChange(jalaliToGregorian(currentJDate.jy, currentJDate.jm, day))}
             >
               {day || ""}
               {today && !selected && (
-                <div className="absolute bottom-1 w-1 h-1 bg-[#673AB7] rounded-full"></div>
+                <div className="absolute bottom-1 w-1 h-1 bg-blue-600 dark:bg-blue-400 rounded-full"></div>
               )}
             </div>
           );

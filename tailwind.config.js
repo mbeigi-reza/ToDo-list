@@ -1,6 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
+  darkMode: 'class', // فعال کردن دارک مود بر اساس کلاس
   theme: {
     extend: {
       fontFamily: {
@@ -8,11 +9,28 @@ module.exports = {
       },
       colors: {
         primary: {
-          50: '#F3E5F5',
-          100: '#E1D8F1',
-          500: '#7C4DFF', 
-          600: '#673AB7',
-          700: '#512DA8',
+          50: '#EFF6FF',   // آبی بسیار روشن
+          100: '#DBEAFE',  // آبی روشن
+          200: '#BFDBFE',  // آبی متوسط
+          300: '#93C5FD',  // آبی
+          400: '#60A5FA',  // آبی تیره‌تر
+          500: '#3B82F6',  // آبی اصلی
+          600: '#2563EB',  // آبی پررنگ
+          700: '#1D4ED8',  // آبی بسیار پررنگ
+          800: '#1E40AF',  // آبی تیره
+          900: '#1E3A8A',  // آبی بسیار تیره
+        },
+        gray: {
+          50: '#F9FAFB',
+          100: '#F3F4F6',
+          200: '#E5E7EB',
+          300: '#D1D5DB',
+          400: '#9CA3AF',
+          500: '#6B7280',
+          600: '#4B5563',
+          700: '#374151',
+          800: '#1F2937',
+          900: '#111827',
         }
       },
       screens: {
@@ -44,6 +62,10 @@ module.exports = {
       minWidth: {
         'xxxs': '250px',
         'xxs': '280px',
+      },
+      // انیمیشن‌های سفارشی برای تغییر نرم تم
+      transitionProperty: {
+        'colors': 'color, background-color, border-color, text-decoration-color, fill, stroke',
       }
     },
   },
@@ -68,6 +90,13 @@ module.exports = {
           '-webkit-line-clamp': '3',
           '-webkit-box-orient': 'vertical',
           overflow: 'hidden',
+        },
+        // کلاس‌های کمکی برای دارک مود
+        '.bg-gradient-dark': {
+          'background': 'linear-gradient(135deg, #1F2937 0%, #111827 100%)',
+        },
+        '.bg-gradient-light': {
+          'background': 'linear-gradient(135deg, #F9FAFB 0%, #F3F4F6 100%)',
         }
       })
     }

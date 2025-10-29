@@ -5,7 +5,7 @@ export default function AddCategoryModal({ onClose, onSave, existingCategories }
     label: '',
     value: '',
     icon: '💡',
-    color: '#7C4DFF'
+    color: '#3B82F6'
   });
 
   const icons = [
@@ -14,9 +14,9 @@ export default function AddCategoryModal({ onClose, onSave, existingCategories }
   ];
 
   const colors = [
-    '#7C4DFF', '#673AB7', '#512DA8', '#C5B4E3', '#E1D8F1',
-    '#FF6B6B', '#4ECDC4', '#45B7D1', '#96CEB4', '#FFEAA7',
-    '#DDA0DD', '#98D8C8', '#F7DC6F', '#BB8FCE', '#85C1E9'
+    '#3B82F6', '#2563EB', '#1D4ED8', '#93C5FD', '#DBEAFE',
+    '#EF4444', '#10B981', '#06B6D4', '#84CC16', '#F59E0B',
+    '#8B5CF6', '#EC4899', '#F97316', '#6366F1', '#14B8A6'
   ];
 
   const handleChange = (field, value) => {
@@ -59,9 +59,9 @@ export default function AddCategoryModal({ onClose, onSave, existingCategories }
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4 w-full">
-      <div className="bg-white rounded-lg shadow-xl w-full max-w-md">
+      <div className="bg-white dark:bg-gray-800 rounded-lg shadow-xl w-full max-w-md transition-colors duration-300">
         {/* هدر مودال */}
-        <div className="bg-[#673AB7] text-white p-4 rounded-t-lg w-full">
+        <div className="bg-blue-600 dark:bg-gray-700 text-white p-4 rounded-t-lg w-full transition-colors duration-300">
           <div className="flex items-center justify-between w-full">
             <h2 className="text-xl font-bold">افزودن دسته‌بندی جدید</h2>
             <button
@@ -79,7 +79,7 @@ export default function AddCategoryModal({ onClose, onSave, existingCategories }
         <form onSubmit={handleSubmit} className="p-6 space-y-4 w-full">
           {/* نام دسته‌بندی */}
           <div className="w-full">
-            <label className="block text-[#673AB7] font-semibold mb-2 text-right w-full">
+            <label className="block text-blue-600 dark:text-blue-400 font-semibold mb-2 text-right w-full">
               نام دسته‌بندی
             </label>
             <input
@@ -92,7 +92,7 @@ export default function AddCategoryModal({ onClose, onSave, existingCategories }
                   handleChange('value', generateValueFromLabel(e.target.value));
                 }
               }}
-              className="w-full p-3 border-2 border-[#C5B4E3] rounded-lg text-right text-[#673AB7] focus:outline-none focus:ring-2 focus:ring-[#7C4DFF] focus:border-transparent"
+              className="w-full p-3 border-2 border-blue-300 dark:border-gray-600 rounded-lg text-right text-blue-600 dark:text-blue-400 bg-white dark:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 focus:border-transparent transition-colors duration-300"
               placeholder="مثال: مطالعه"
               maxLength={20}
             />
@@ -100,14 +100,14 @@ export default function AddCategoryModal({ onClose, onSave, existingCategories }
 
           {/* مقدار دسته‌بندی */}
           <div className="w-full">
-            <label className="block text-[#673AB7] font-semibold mb-2 text-right w-full">
+            <label className="block text-blue-600 dark:text-blue-400 font-semibold mb-2 text-right w-full">
               مقدار (فقط حروف لاتین)
             </label>
             <input
               type="text"
               value={formData.value}
               onChange={(e) => handleChange('value', e.target.value.replace(/\s+/g, '_').toLowerCase())}
-              className="w-full p-3 border-2 border-[#C5B4E3] rounded-lg text-left text-[#673AB7] focus:outline-none focus:ring-2 focus:ring-[#7C4DFF] focus:border-transparent font-mono"
+              className="w-full p-3 border-2 border-blue-300 dark:border-gray-600 rounded-lg text-left text-blue-600 dark:text-blue-400 bg-white dark:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 focus:border-transparent font-mono transition-colors duration-300"
               placeholder="example: study"
               pattern="[a-zA-Z_]+"
               title="فقط حروف لاتین و underline مجاز است"
@@ -116,17 +116,17 @@ export default function AddCategoryModal({ onClose, onSave, existingCategories }
 
           {/* انتخاب آیکون */}
           <div className="w-full">
-            <label className="block text-[#673AB7] font-semibold mb-2 text-right w-full">
+            <label className="block text-blue-600 dark:text-blue-400 font-semibold mb-2 text-right w-full">
               انتخاب آیکون
             </label>
-            <div className="grid grid-cols-10 gap-2 max-h-32 overflow-y-auto p-2 border border-[#C5B4E3] rounded-lg w-full">
+            <div className="grid grid-cols-10 gap-2 max-h-32 overflow-y-auto p-2 border border-blue-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 w-full transition-colors duration-300">
               {icons.map((icon, index) => (
                 <button
                   key={index}
                   type="button"
                   onClick={() => handleChange('icon', icon)}
-                  className={`w-8 h-8 text-lg rounded hover:bg-gray-100 transition-colors ${
-                    formData.icon === icon ? 'bg-[#7C4DFF] text-white' : ''
+                  className={`w-8 h-8 text-lg rounded hover:bg-gray-100 dark:hover:bg-gray-600 transition-colors ${
+                    formData.icon === icon ? 'bg-blue-600 text-white' : ''
                   }`}
                 >
                   {icon}
@@ -137,17 +137,17 @@ export default function AddCategoryModal({ onClose, onSave, existingCategories }
 
           {/* انتخاب رنگ */}
           <div className="w-full">
-            <label className="block text-[#673AB7] font-semibold mb-2 text-right w-full">
+            <label className="block text-blue-600 dark:text-blue-400 font-semibold mb-2 text-right w-full">
               انتخاب رنگ
             </label>
-            <div className="grid grid-cols-10 gap-2 p-2 border border-[#C5B4E3] rounded-lg w-full">
+            <div className="grid grid-cols-10 gap-2 p-2 border border-blue-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 w-full transition-colors duration-300">
               {colors.map((color, index) => (
                 <button
                   key={index}
                   type="button"
                   onClick={() => handleChange('color', color)}
-                  className={`w-6 h-6 rounded-full border-2 ${
-                    formData.color === color ? 'border-gray-800' : 'border-transparent'
+                  className={`w-6 h-6 rounded-full border-2 transition-colors ${
+                    formData.color === color ? 'border-gray-800 dark:border-gray-200' : 'border-transparent'
                   }`}
                   style={{ backgroundColor: color }}
                 />
@@ -156,15 +156,15 @@ export default function AddCategoryModal({ onClose, onSave, existingCategories }
           </div>
 
           {/* پیش‌نمایش */}
-          <div className="p-3 bg-gray-50 rounded-lg border border-[#C5B4E3] w-full">
-            <label className="block text-[#673AB7] font-semibold mb-2 text-right w-full">
+          <div className="p-3 bg-gray-50 dark:bg-gray-700 rounded-lg border border-blue-300 dark:border-gray-600 w-full transition-colors duration-300">
+            <label className="block text-blue-600 dark:text-blue-400 font-semibold mb-2 text-right w-full">
               پیش‌نمایش
             </label>
             <div
-              className="p-3 rounded-lg flex items-center justify-between text-right w-full"
+              className="p-3 rounded-lg flex items-center justify-between text-right w-full transition-colors duration-300"
               style={{ 
                 backgroundColor: formData.color,
-                color: ['#E1D8F1', '#C5B4E3', '#FFEAA7', '#96CEB4', '#4ECDC4', '#85C1E9'].includes(formData.color) ? '#673AB7' : 'white'
+                color: ['#DBEAFE', '#93C5FD', '#FEF3C7', '#D1FAE5', '#E0E7FF'].includes(formData.color) ? '#3B82F6' : 'white'
               }}
             >
               <div className="flex items-center space-x-3 space-x-reverse w-full">
@@ -180,13 +180,13 @@ export default function AddCategoryModal({ onClose, onSave, existingCategories }
             <button
               type="button"
               onClick={onClose}
-              className="flex-1 py-3 px-6 border-2 border-[#673AB7] text-[#673AB7] font-semibold rounded-lg hover:bg-[#F8F5FF] transition-colors"
+              className="flex-1 py-3 px-6 border-2 border-blue-600 dark:border-blue-400 text-blue-600 dark:text-blue-400 font-semibold rounded-lg hover:bg-blue-50 dark:hover:bg-blue-900 transition-colors duration-300"
             >
               انصراف
             </button>
             <button
               type="submit"
-              className="flex-1 py-3 px-6 bg-[#7C4DFF] hover:bg-[#673AB7] text-white font-semibold rounded-lg transition-colors"
+              className="flex-1 py-3 px-6 bg-blue-600 hover:bg-blue-700 dark:bg-blue-700 dark:hover:bg-blue-800 text-white font-semibold rounded-lg transition-colors duration-300"
             >
               ذخیره
             </button>

@@ -75,8 +75,8 @@ export default function TaskList({ tasks, selectedDate }) {
         return (
           <div 
             key={task.id}
-            className={`bg-white rounded-2xl shadow-sm border border-gray-100 p-4 hover:shadow-md transition-all w-full ${
-              task.completed ? 'opacity-70 bg-green-50 border-green-200' : ''
+            className={`bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 p-4 hover:shadow-md transition-all w-full ${
+              task.completed ? 'opacity-70 bg-green-50 dark:bg-green-900 border-green-200 dark:border-green-700' : ''
             }`}
           >
             {/* هدر تسک */}
@@ -88,7 +88,7 @@ export default function TaskList({ tasks, selectedDate }) {
                   className={`w-6 h-6 rounded-full border-2 flex items-center justify-center transition-all ${
                     task.completed 
                       ? 'bg-green-500 border-green-500 text-white' 
-                      : 'border-gray-300 hover:border-green-500 hover:bg-green-50'
+                      : 'border-gray-300 dark:border-gray-600 hover:border-green-500 dark:hover:border-green-500 hover:bg-green-50 dark:hover:bg-green-900'
                   }`}
                   title={task.completed ? 'بازگشت به حالت انجام نشده' : 'علامت به عنوان انجام شده'}
                 >
@@ -102,13 +102,13 @@ export default function TaskList({ tasks, selectedDate }) {
                       type="text"
                       value={editForm.title}
                       onChange={(e) => setEditForm(prev => ({ ...prev, title: e.target.value }))}
-                      className="w-full p-2 border border-gray-300 rounded-lg text-right text-gray-800 focus:outline-none focus:ring-2 focus:ring-[#7C4DFF]"
+                      className="w-full p-2 border border-gray-300 dark:border-gray-600 rounded-lg text-right text-gray-800 dark:text-gray-200 bg-white dark:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400"
                       placeholder="عنوان تسک"
                     />
                   </div>
                 ) : (
                   <h3 className={`font-semibold text-right text-lg flex-1 w-full ${
-                    task.completed ? 'line-through text-gray-500' : 'text-gray-800'
+                    task.completed ? 'line-through text-gray-500 dark:text-gray-400' : 'text-gray-800 dark:text-gray-200'
                   }`}>
                     {task.title}
                   </h3>
@@ -122,7 +122,7 @@ export default function TaskList({ tasks, selectedDate }) {
                     className="text-xs px-2 py-1 rounded-full font-medium whitespace-nowrap"
                     style={{ 
                       backgroundColor: categoryInfo.color,
-                      color: ['#E1D8F1', '#C5B4E3'].includes(categoryInfo.color) ? '#673AB7' : 'white'
+                      color: ['#E1D8F1', '#C5B4E3'].includes(categoryInfo.color) ? '#3B82F6' : 'white'
                     }}
                   >
                     {categoryInfo.label}
@@ -137,14 +137,14 @@ export default function TaskList({ tasks, selectedDate }) {
                   <>
                     <button
                       onClick={() => handleSaveEdit(task.id)}
-                      className="p-2 text-green-600 hover:bg-green-100 rounded-lg transition-colors"
+                      className="p-2 text-green-600 dark:text-green-400 hover:bg-green-100 dark:hover:bg-green-800 rounded-lg transition-colors"
                       title="ذخیره"
                     >
                       <Save className="w-4 h-4" />
                     </button>
                     <button
                       onClick={handleCancelEdit}
-                      className="p-2 text-gray-600 hover:bg-gray-100 rounded-lg transition-colors"
+                      className="p-2 text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors"
                       title="انصراف"
                     >
                       <X className="w-4 h-4" />
@@ -153,7 +153,7 @@ export default function TaskList({ tasks, selectedDate }) {
                 ) : (
                   <button
                     onClick={() => handleEdit(task)}
-                    className="p-2 text-blue-600 hover:bg-blue-100 rounded-lg transition-colors"
+                    className="p-2 text-blue-600 dark:text-blue-400 hover:bg-blue-100 dark:hover:bg-blue-800 rounded-lg transition-colors"
                     title="ویرایش تسک"
                   >
                     <Edit3 className="w-4 h-4" />
@@ -163,9 +163,9 @@ export default function TaskList({ tasks, selectedDate }) {
                 {/* دکمه حذف */}
                 <button
                   onClick={() => handleDelete(task.id)}
-                  className="p-2 text-red-600 hover:bg-red-100 rounded-lg transition-colors"
+                  className="p-2 text-red-600 dark:text-red-400 hover:bg-red-100 dark:hover:bg-red-800 rounded-lg transition-colors"
                   title="حذف تسک"
-                  >
+                >
                   <Trash2 className="w-4 h-4" />
                 </button>
               </div>
@@ -178,13 +178,13 @@ export default function TaskList({ tasks, selectedDate }) {
                   value={editForm.description}
                   onChange={(e) => setEditForm(prev => ({ ...prev, description: e.target.value }))}
                   rows="2"
-                  className="w-full p-2 border border-gray-300 rounded-lg text-right text-gray-800 resize-none focus:outline-none focus:ring-2 focus:ring-[#7C4DFF]"
+                  className="w-full p-2 border border-gray-300 dark:border-gray-600 rounded-lg text-right text-gray-800 dark:text-gray-200 bg-white dark:bg-gray-700 resize-none focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400"
                   placeholder="توضیحات تسک (اختیاری)"
                 />
               </div>
             ) : (
               task.description && (
-                <p className={`text-gray-600 text-right text-sm leading-6 mb-3 w-full ${
+                <p className={`text-gray-600 dark:text-gray-400 text-right text-sm leading-6 mb-3 w-full ${
                   task.completed ? 'line-through' : ''
                 }`}>
                   {task.description}
@@ -193,7 +193,7 @@ export default function TaskList({ tasks, selectedDate }) {
             )}
             
             {/* اطلاعات پایین تسک */}
-            <div className="flex justify-between items-center text-xs text-gray-400 w-full">
+            <div className="flex justify-between items-center text-xs text-gray-400 dark:text-gray-500 w-full">
               <span>
                 {task.date ? new Date(task.date).toLocaleDateString('fa-IR') : 'بدون تاریخ'}
               </span>
@@ -206,9 +206,9 @@ export default function TaskList({ tasks, selectedDate }) {
             {/* وضعیت انجام شده */}
             {task.completed && (
               <div className="mt-2 flex items-center justify-end gap-1 w-full">
-                <CheckCircle2 className="w-4 h-4 text-green-600" />
-                <span className="text-green-600 text-xs">انجام شده</span>
-                <span className="text-green-600 text-xs">
+                <CheckCircle2 className="w-4 h-4 text-green-600 dark:text-green-400" />
+                <span className="text-green-600 dark:text-green-400 text-xs">انجام شده</span>
+                <span className="text-green-600 dark:text-green-400 text-xs">
                   {new Date().toLocaleDateString('fa-IR')}
                 </span>
               </div>
@@ -216,8 +216,8 @@ export default function TaskList({ tasks, selectedDate }) {
             
             {/* خط جداکننده بین تسک‌ها */}
             {index < tasks.length - 1 && (
-              <div className="border-t border-gray-100 mt-4 pt-4 w-full">
-                <div className="flex items-center justify-between text-xs text-gray-400 w-full">
+              <div className="border-t border-gray-100 dark:border-gray-700 mt-4 pt-4 w-full">
+                <div className="flex items-center justify-between text-xs text-gray-400 dark:text-gray-500 w-full">
                   <span>بعدی: {tasks[index + 1]?.title}</span>
                   <span>{formatTime(tasks[index + 1]?.time)}</span>
                 </div>
@@ -232,7 +232,7 @@ export default function TaskList({ tasks, selectedDate }) {
         <div className="text-center py-8 w-full">
           <button 
             onClick={handleAddTask}
-            className="bg-[#7C4DFF] hover:bg-[#673AB7] text-white px-6 py-3 rounded-lg font-medium transition-colors shadow-md flex items-center justify-center gap-2 mx-auto w-full"
+            className="bg-blue-600 hover:bg-blue-700 dark:bg-blue-700 dark:hover:bg-blue-800 text-white px-6 py-3 rounded-lg font-medium transition-colors shadow-md flex items-center justify-center gap-2 mx-auto w-full"
           >
             <Plus className="w-5 h-5" />
             <span>افزودن اولین تسک</span>

@@ -201,28 +201,28 @@ export default function HorizontalCalendar({ selectedDate, onDateChange }) {
   };
 
   return (
-    <div className="bg-white p-1 xxxs:p-2 xxs:p-3 xs:p-4 shadow-lg rounded-lg w-full mx-0 px-0">
+    <div className="bg-white dark:bg-gray-800 p-1 xxxs:p-2 xxs:p-3 xs:p-4 shadow-lg rounded-lg w-full mx-0 px-0 transition-colors duration-300">
       {/* کنترل ماه */}
       <div className="flex justify-between items-center mb-1 xxxs:mb-2 xxs:mb-3 xs:mb-4 w-full mx-0 px-0">
         <button
           onClick={handleNextMonth}
-          className="px-1.5 xxxs:px-2 xxs:px-3 xs:px-4 py-0.5 xxxs:py-1 xxs:py-2 bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors text-gray-700 flex items-center gap-0.5 xxxs:gap-1 xxs:gap-2 text-xxxs xxxs:text-xxs xxs:text-xs xs:text-sm"
+          className="px-1.5 xxxs:px-2 xxs:px-3 xs:px-4 py-0.5 xxxs:py-1 xxs:py-2 bg-gray-100 dark:bg-gray-700 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors text-gray-700 dark:text-gray-300 flex items-center gap-0.5 xxxs:gap-1 xxs:gap-2 text-xxxs xxxs:text-xxs xxs:text-xs xs:text-sm"
         >
           <span className="hidden xxxs:inline">ماه بعد</span>
           <span className="text-xxxs xxxs:text-xxs">▶</span>
         </button>
 
-        <div className="text-xxxs xxxs:text-xs xxs:text-sm xs:text-base md:text-lg font-semibold text-gray-800 text-center px-0.5 xxxs:px-1">
+        <div className="text-xxxs xxxs:text-xs xxs:text-sm xs:text-base md:text-lg font-semibold text-gray-800 dark:text-gray-200 text-center px-0.5 xxxs:px-1 transition-colors duration-300">
           <div className="text-xxxs xxxs:text-xxs xxs:text-xs xs:text-sm">{months[currentMonth.jm - 1]}</div>
           <div className="text-xxxs xxxs:text-xxs xxs:text-xs xs:text-sm">{currentMonth.jy}</div>
           {isCurrentMonthToday() && (
-            <div className="text-xxxs xxxs:text-xxs text-green-600 mt-0.5"></div>
+            <div className="text-xxxs xxxs:text-xxs text-green-600 dark:text-green-400 mt-0.5"></div>
           )}
         </div>
 
         <button
           onClick={handlePrevMonth}
-          className="px-1.5 xxxs:px-2 xxs:px-3 xs:px-4 py-0.5 xxxs:py-1 xxs:py-2 bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors text-gray-700 flex items-center gap-0.5 xxxs:gap-1 xxs:gap-2 text-xxxs xxxs:text-xxs xxs:text-xs xs:text-sm"
+          className="px-1.5 xxxs:px-2 xxs:px-3 xs:px-4 py-0.5 xxxs:py-1 xxs:py-2 bg-gray-100 dark:bg-gray-700 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors text-gray-700 dark:text-gray-300 flex items-center gap-0.5 xxxs:gap-1 xxs:gap-2 text-xxxs xxxs:text-xxs xxs:text-xs xs:text-sm"
         >
           <span className="text-xxxs xxxs:text-xxs">◀</span>
           <span className="hidden xxxs:inline">ماه قبل</span>
@@ -247,7 +247,7 @@ export default function HorizontalCalendar({ selectedDate, onDateChange }) {
             flex flex-col items-center justify-center border-2 flex-shrink-0
             ${isAllTasksSelected
               ? 'bg-blue-600 text-white shadow-lg transform scale-105 border-blue-600'
-              : 'bg-gray-50 hover:bg-gray-100 text-gray-700 border-gray-200 hover:border-gray-300'
+              : 'bg-gray-50 dark:bg-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 text-gray-700 dark:text-gray-300 border-gray-200 dark:border-gray-600 hover:border-gray-300 dark:hover:border-gray-500'
             }
           `}
         >
@@ -275,15 +275,19 @@ export default function HorizontalCalendar({ selectedDate, onDateChange }) {
                 ${selected
                   ? 'bg-blue-600 text-white shadow-lg transform scale-105 border-blue-600'
                   : today
-                    ? 'bg-blue-100 text-blue-700 border-blue-600'
-                    : 'bg-white text-gray-700 border-gray-200 hover:bg-gray-50 hover:border-gray-300'
+                    ? 'bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-300 border-blue-600 dark:border-blue-500'
+                    : 'bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-300 border-gray-200 dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-600 hover:border-gray-300 dark:hover:border-gray-500'
                 }
               `}
             >
-              <div className={`text-[7px] xxxs:text-[8px] xxs:text-[9px] xs:text-[10px] md:text-xs font-medium ${today && !selected ? 'text-blue-700' : ''}`}>
+              <div className={`text-[7px] xxxs:text-[8px] xxs:text-[9px] xs:text-[10px] md:text-xs font-medium ${
+                today && !selected ? 'text-blue-700 dark:text-blue-300' : ''
+              }`}>
                 {getDayName(date)}
               </div>
-              <div className={`text-[10px] xxxs:text-xs xxs:text-sm xs:text-base md:text-base font-bold mt-0.5 ${today && !selected ? 'text-blue-700' : ''}`}>
+              <div className={`text-[10px] xxxs:text-xs xxs:text-sm xs:text-base md:text-base font-bold mt-0.5 ${
+                today && !selected ? 'text-blue-700 dark:text-blue-300' : ''
+              }`}>
                 {dayNumber}
               </div>
               <div className="text-[5px] xxxs:text-[6px] xxs:text-[7px] xs:text-[8px] md:text-[10px] mt-0.5 opacity-70">

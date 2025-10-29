@@ -80,13 +80,13 @@ export default function AddTaskPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#F5F5F5] p-4 w-full">
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 p-4 w-full transition-colors duration-300">
       {/* هدر */}
-      <div className="bg-[#673AB7] text-white p-4 rounded-t-lg mb-4 shadow-md w-full">
+      <div className="bg-blue-600 dark:bg-gray-800 text-white p-4 rounded-t-lg mb-4 shadow-md w-full transition-colors duration-300">
         <div className="flex items-center justify-between">
           <button 
             onClick={() => navigate(-1)}
-            className="text-white bg-[#512DA8] p-2 rounded-lg hover:bg-[#7C4DFF] transition-colors flex items-center justify-center"
+            className="text-white bg-blue-700 dark:bg-gray-700 p-2 rounded-lg hover:bg-blue-800 dark:hover:bg-gray-600 transition-colors flex items-center justify-center"
           >
             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
@@ -98,41 +98,41 @@ export default function AddTaskPage() {
       </div>
 
       {/* محتوای اصلی */}
-      <div className="bg-white rounded-lg shadow-lg p-4 w-full">
+      <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-4 w-full transition-colors duration-300">
         {/* بخش تاریخ با قابلیت فعال/غیرفعال */}
         <div className="mb-6 w-full">
           <div className="flex items-center justify-between mb-3 w-full">
-            <h3 className="text-[#673AB7] font-semibold text-lg">تاریخ تسک</h3>
+            <h3 className="text-blue-600 dark:text-blue-400 font-semibold text-lg">تاریخ تسک</h3>
             <button
               onClick={toggleDateEnabled}
               className={`flex items-center gap-2 px-4 py-2 rounded-lg transition-colors ${
                 isDateEnabled 
-                  ? 'bg-[#7C4DFF] text-white' 
-                  : 'bg-[#E1D8F1] text-[#673AB7] border border-[#C5B4E3]'
+                  ? 'bg-blue-600 text-white' 
+                  : 'bg-blue-100 dark:bg-gray-700 text-blue-600 dark:text-blue-400 border border-blue-300 dark:border-gray-600'
               }`}
             >
               <span>{isDateEnabled ? 'فعال' : 'غیرفعال'}</span>
               <div className={`w-4 h-4 rounded border-2 ${
-                isDateEnabled ? 'bg-white border-white' : 'bg-transparent border-[#673AB7]'
+                isDateEnabled ? 'bg-white border-white' : 'bg-transparent border-blue-600 dark:border-blue-400'
               }`}></div>
             </button>
           </div>
 
           {isDateEnabled ? (
-            <div className="bg-[#F8F5FF] p-4 rounded-lg border border-[#E1D8F1] w-full">
+            <div className="bg-blue-50 dark:bg-gray-700 p-4 rounded-lg border border-blue-200 dark:border-gray-600 w-full transition-colors duration-300">
               <Calendar 
                 selectedDate={selectedDate} 
                 onDateChange={handleDateChange} 
                 disabled={!isDateEnabled}
               />
-              <div className="mt-2 text-sm text-[#673AB7] text-center">
+              <div className="mt-2 text-sm text-blue-600 dark:text-blue-400 text-center">
                 تاریخ انتخاب شده: {selectedDate.toLocaleDateString('fa-IR')}
               </div>
             </div>
           ) : (
-            <div className="bg-[#F8F5FF] p-4 rounded-lg border border-[#E1D8F1] text-center w-full">
-              <CalendarIcon className="w-8 h-8 text-[#673AB7] mx-auto mb-2" />
-              <p className="text-[#673AB7]">این تسک برای همه روزها فعال خواهد بود</p>
+            <div className="bg-blue-50 dark:bg-gray-700 p-4 rounded-lg border border-blue-200 dark:border-gray-600 text-center w-full transition-colors duration-300">
+              <CalendarIcon className="w-8 h-8 text-blue-600 dark:text-blue-400 mx-auto mb-2" />
+              <p className="text-blue-600 dark:text-blue-400">این تسک برای همه روزها فعال خواهد بود</p>
             </div>
           )}
         </div>
@@ -141,15 +141,15 @@ export default function AddTaskPage() {
         <div className="mb-6 w-full">
           <div 
             onClick={toggleCategory}
-            className="bg-[#F8F5FF] p-4 rounded-lg border border-[#E1D8F1] cursor-pointer hover:bg-[#F0EBFF] transition-colors w-full"
+            className="bg-blue-50 dark:bg-gray-700 p-4 rounded-lg border border-blue-200 dark:border-gray-600 cursor-pointer hover:bg-blue-100 dark:hover:bg-gray-600 transition-colors w-full"
           >
             <div className="flex items-center justify-between w-full">
-              <h3 className="text-[#673AB7] font-semibold text-lg">
+              <h3 className="text-blue-600 dark:text-blue-400 font-semibold text-lg">
                 انتخاب دسته‌بندی
               </h3>
               <div className="flex items-center gap-2">
                 <svg 
-                  className={`w-5 h-5 text-[#673AB7] transition-transform ${isCategoryOpen ? 'rotate-180' : ''}`}
+                  className={`w-5 h-5 text-blue-600 dark:text-blue-400 transition-transform ${isCategoryOpen ? 'rotate-180' : ''}`}
                   fill="none" 
                   stroke="currentColor" 
                   viewBox="0 0 24 24"
@@ -157,7 +157,7 @@ export default function AddTaskPage() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                 </svg>
                 {category && (
-                  <span className="text-[#512DA8] bg-white px-2 py-1 rounded text-sm border border-[#C5B4E3]">
+                  <span className="text-blue-700 dark:text-blue-300 bg-white dark:bg-gray-600 px-2 py-1 rounded text-sm border border-blue-300 dark:border-gray-500">
                     {category}
                   </span>
                 )}
@@ -173,7 +173,7 @@ export default function AddTaskPage() {
 
           <button
             onClick={handleManageCategories}
-            className="w-full mt-3 bg-[#E1D8F1] hover:bg-[#C5B4E3] text-[#673AB7] font-medium py-3 px-4 rounded-lg transition-colors duration-200 border border-[#C5B4E3] flex items-center justify-center gap-2 hover:bg-opacity-90"
+            className="w-full mt-3 bg-blue-100 dark:bg-gray-700 hover:bg-blue-200 dark:hover:bg-gray-600 text-blue-600 dark:text-blue-400 font-medium py-3 px-4 rounded-lg transition-colors duration-200 border border-blue-300 dark:border-gray-600 flex items-center justify-center gap-2"
           >
             <Settings className="w-5 h-5" />
             <span>مدیریت دسته‌بندی‌ها</span>
@@ -189,7 +189,7 @@ export default function AddTaskPage() {
         <button
           type="submit"
           onClick={handleSubmit}
-          className="bg-[#7C4DFF] hover:bg-[#673AB7] text-white font-medium py-3 px-6 rounded-lg w-full transition-colors duration-200 shadow-md flex items-center justify-center gap-2"
+          className="bg-blue-600 hover:bg-blue-700 dark:bg-blue-700 dark:hover:bg-blue-800 text-white font-medium py-3 px-6 rounded-lg w-full transition-colors duration-200 shadow-md flex items-center justify-center gap-2"
         >
           <Save className="w-5 h-5" />
           <span>ذخیره تسک</span>

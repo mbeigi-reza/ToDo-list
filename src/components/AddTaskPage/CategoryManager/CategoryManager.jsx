@@ -9,10 +9,10 @@ export default function CategoryManager() {
 
   // 4 دسته‌بندی پیش‌فرض
   const defaultCategories = [
-    { id: 1, value: "work", label: "کار", icon: "💼", color: "#512DA8", taskCount: 0, isDefault: true },
-    { id: 2, value: "personal", label: "شخصی", icon: "❤️", color: "#FF6B6B", taskCount: 0, isDefault: true },
-    { id: 3, value: "shopping", label: "خرید", icon: "🛒", color: "#4ECDC4", taskCount: 0, isDefault: true },
-    { id: 4, value: "health", label: "سلامتی", icon: "🏥", color: "#96CEB4", taskCount: 0, isDefault: true },
+    { id: 1, value: "work", label: "کار", icon: "💼", color: "#3B82F6", taskCount: 0, isDefault: true },
+    { id: 2, value: "personal", label: "شخصی", icon: "❤️", color: "#EF4444", taskCount: 0, isDefault: true },
+    { id: 3, value: "shopping", label: "خرید", icon: "🛒", color: "#10B981", taskCount: 0, isDefault: true },
+    { id: 4, value: "health", label: "سلامتی", icon: "🏥", color: "#8B5CF6", taskCount: 0, isDefault: true },
   ];
 
   // بارگذاری دسته‌بندی‌ها از localStorage
@@ -75,13 +75,13 @@ export default function CategoryManager() {
   const userCats = categories.filter(cat => !cat.isDefault);
 
   return (
-    <div className="min-h-screen bg-[#F5F5F5] p-4 w-full">
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 p-4 w-full transition-colors duration-300">
       {/* هدر */}
-      <div className="bg-[#673AB7] text-white p-4 rounded-t-lg mb-4 shadow-md w-full">
+      <div className="bg-blue-600 dark:bg-gray-800 text-white p-4 rounded-t-lg mb-4 shadow-md w-full transition-colors duration-300">
         <div className="flex items-center justify-between">
           <button 
             onClick={handleBack}
-            className="text-white bg-[#512DA8] p-2 rounded-lg hover:bg-[#7C4DFF] transition-colors"
+            className="text-white bg-blue-700 dark:bg-gray-700 p-2 rounded-lg hover:bg-blue-800 dark:hover:bg-gray-600 transition-colors"
           >
             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
@@ -93,12 +93,12 @@ export default function CategoryManager() {
       </div>
 
       {/* محتوای اصلی */}
-      <div className="bg-white rounded-lg shadow-lg p-4 w-full">
+      <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-4 w-full transition-colors duration-300">
         {/* دکمه‌های action */}
         <div className="flex gap-3 mb-6 w-full">
           <button
             onClick={() => setIsModalOpen(true)}
-            className="flex-1 bg-[#7C4DFF] hover:bg-[#673AB7] text-white font-semibold py-3 px-4 rounded-lg transition-colors duration-200 shadow-md flex items-center justify-center space-x-2 space-x-reverse"
+            className="flex-1 bg-blue-600 hover:bg-blue-700 dark:bg-blue-700 dark:hover:bg-blue-800 text-white font-semibold py-3 px-4 rounded-lg transition-colors duration-200 shadow-md flex items-center justify-center space-x-2 space-x-reverse"
           >
             <span>➕</span>
             <span className="text-sm">دسته‌بندی جدید</span>
@@ -106,7 +106,7 @@ export default function CategoryManager() {
           
           <button
             onClick={handleResetToDefault}
-            className="flex-1 bg-[#E1D8F1] hover:bg-[#C5B4E3] text-[#673AB7] font-semibold py-3 px-4 rounded-lg transition-colors duration-200 border border-[#C5B4E3] flex items-center justify-center space-x-2 space-x-reverse"
+            className="flex-1 bg-blue-100 hover:bg-blue-200 dark:bg-gray-700 dark:hover:bg-gray-600 text-blue-600 dark:text-blue-400 font-semibold py-3 px-4 rounded-lg transition-colors duration-200 border border-blue-300 dark:border-gray-600 flex items-center justify-center space-x-2 space-x-reverse"
           >
             <span>🔄</span>
             <span className="text-sm">بازنشانی</span>
@@ -116,7 +116,7 @@ export default function CategoryManager() {
         {/* دسته‌بندی‌های پیش‌فرض */}
         {defaultCats.length > 0 && (
           <div className="mb-6 w-full">
-            <h3 className="text-[#673AB7] font-semibold mb-3 text-right flex items-center">
+            <h3 className="text-blue-600 dark:text-blue-400 font-semibold mb-3 text-right flex items-center">
               <span className="ml-2">📋</span>
               دسته‌بندی‌های پیش‌فرض
             </h3>
@@ -127,7 +127,7 @@ export default function CategoryManager() {
                   className="flex items-center justify-between p-4 rounded-lg border-2 border-transparent hover:shadow-md transition-all duration-200 relative w-full"
                   style={{ 
                     backgroundColor: category.color, 
-                    color: ['#E1D8F1', '#C5B4E3', '#FFEAA7', '#96CEB4', '#4ECDC4', '#85C1E9'].includes(category.color) ? '#673AB7' : 'white'
+                    color: ['#DBEAFE', '#93C5FD', '#FEF3C7', '#D1FAE5', '#E0E7FF'].includes(category.color) ? '#3B82F6' : 'white'
                   }}
                 >
                   <div className="flex items-center space-x-3 space-x-reverse">
@@ -160,7 +160,7 @@ export default function CategoryManager() {
         {/* دسته‌بندی‌های کاربر */}
         {userCats.length > 0 && (
           <div className="mb-6 w-full">
-            <h3 className="text-[#673AB7] font-semibold mb-3 text-right flex items-center">
+            <h3 className="text-blue-600 dark:text-blue-400 font-semibold mb-3 text-right flex items-center">
               <span className="ml-2">👤</span>
               دسته‌بندی‌های شما
             </h3>
@@ -171,7 +171,7 @@ export default function CategoryManager() {
                   className="flex items-center justify-between p-4 rounded-lg border-2 border-transparent hover:shadow-md transition-all duration-200 w-full"
                   style={{ 
                     backgroundColor: category.color, 
-                    color: ['#E1D8F1', '#C5B4E3', '#FFEAA7', '#96CEB4', '#4ECDC4', '#85C1E9'].includes(category.color) ? '#673AB7' : 'white'
+                    color: ['#DBEAFE', '#93C5FD', '#FEF3C7', '#D1FAE5', '#E0E7FF'].includes(category.color) ? '#3B82F6' : 'white'
                   }}
                 >
                   <div className="flex items-center space-x-3 space-x-reverse">
@@ -202,10 +202,10 @@ export default function CategoryManager() {
         {categories.length === 0 && (
           <div className="text-center py-8 w-full">
             <div className="text-6xl mb-4">📂</div>
-            <p className="text-[#673AB7] mb-4">هیچ دسته‌بندی‌ای وجود ندارد</p>
+            <p className="text-blue-600 dark:text-blue-400 mb-4">هیچ دسته‌بندی‌ای وجود ندارد</p>
             <button
               onClick={() => setIsModalOpen(true)}
-              className="bg-[#7C4DFF] hover:bg-[#673AB7] text-white px-6 py-2 rounded-lg font-medium"
+              className="bg-blue-600 hover:bg-blue-700 dark:bg-blue-700 dark:hover:bg-blue-800 text-white px-6 py-2 rounded-lg font-medium transition-colors duration-300"
             >
               ایجاد اولین دسته‌بندی
             </button>
@@ -213,9 +213,9 @@ export default function CategoryManager() {
         )}
 
         {/* راهنما */}
-        <div className="mt-6 p-4 bg-[#F8F5FF] rounded-lg border border-[#E1D8F1] w-full">
-          <h3 className="text-[#673AB7] font-semibold mb-2 text-center">راهنما</h3>
-          <ul className="text-[#673AB7] text-sm text-right space-y-1">
+        <div className="mt-6 p-4 bg-blue-50 dark:bg-gray-700 rounded-lg border border-blue-200 dark:border-gray-600 w-full transition-colors duration-300">
+          <h3 className="text-blue-600 dark:text-blue-400 font-semibold mb-2 text-center">راهنما</h3>
+          <ul className="text-blue-600 dark:text-blue-400 text-sm text-right space-y-1">
             <li>• <strong>دسته‌بندی‌های پیش‌فرض</strong> قابل حذف هستند</li>
             <li>• <strong>دسته‌بندی‌های شما</strong> فقط توسط شما ایجاد و حذف می‌شوند</li>
             <li>• با دکمه <strong>بازنشانی</strong> همه چیز به حالت اول برمی‌گردد</li>
