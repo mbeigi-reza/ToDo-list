@@ -14,15 +14,6 @@
 
 </div>
 
-## 📸 پیشنمایش
-
-<div align="center">
-
-| صفحه اصلی | اضافه کردن تسک | مدیریت دسته‌بندی‌ها |
-|:---:|:---:|:---:|
-| ![Home](https://via.placeholder.com/300x200/3B82F6/FFFFFF?text=📅+صفحه+اصلی) | ![Add Task](https://via.placeholder.com/300x200/10B981/FFFFFF?text=➕+تسک+جدید) | ![Categories](https://via.placeholder.com/300x200/8B5CF6/FFFFFF?text=📂+دسته‌بندی‌ها) |
-
-</div>
 
 ## 🌟 ویژگی‌های خفن
 
@@ -61,11 +52,18 @@
 
 **کافیه روی لینک زیر کلیک کنی و استفاده رو شروع کنی!**
 
-[![Live Demo](https://img.shields.io/badge/🚀_مشاهده_برنامه_زنده-8B5CF6?style=for-the-badge&logo=rocket)](https://mbeigi-reza.github.io/ToDo-list/)
+[![Live Demo](https://img.shields.io/badge/Live_Demo-8B5CF6?style=for-the-badge&logo=rocket)](https://mbeigi-reza.github.io/ToDo-list/)
 
 ### نحوه استفاده
 1. **برو به [اپلیکیشن](https://mbeigi-reza.github.io/ToDo-list/)**
 2. **تسک جدید اضافه کن** 📝
 3. **دسته‌بندی انتخاب کن** 🏷️
 4. **مدیریت کن و پیشرفت رو ببین** 📊
+---
 
+**امتحانش کن و بهم بگو نظرت چیه! 💭**
+
+## 📬 Contact Me
+- [Telegram](https://t.me/omidmbeigi83)
+- [LinkedIn](https://www.linkedin.com/in/rezambeigi)
+- [Email](mailto:your_email@example.com)
