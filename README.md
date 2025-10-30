@@ -1,70 +1,71 @@
-# Getting Started with Create React App
+# 🚀 Persian Todo App - مدیریت هوشمند کارها
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<div align="center">
 
-## Available Scripts
+![React](https://img.shields.io/badge/React-18.2.0-61DAFB?style=for-the-badge&logo=react)
+![Persian](https://img.shields.io/badge/100%25-Persian-FDCD00?style=for-the-badge)
+![Responsive](https://img.shields.io/badge/Fully-Responsive-3DDC84?style=for-the-badge)
+![Dark Mode](https://img.shields.io/badge/Dark%20Mode-Enabled-6B7280?style=for-the-badge)
 
-In the project directory, you can run:
+**مدیریت کارهای روزانه با تقویم شمسی! ✨**
 
-### `npm start`
+[![Live Demo](https://img.shields.io/badge/🎮-Live_Demo-8B5CF6?style=for-the-badge)](https://mbeigi-reza.github.io/ToDo-list/)
+[![GitHub](https://img.shields.io/badge/🐙-Source_Code-181717?style=for-the-badge&logo=github)](https://github.com/mbeigi-reza/ToDo-list)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+</div>
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## 📸 پیشنمایش
 
-### `npm test`
+<div align="center">
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+| صفحه اصلی | اضافه کردن تسک | مدیریت دسته‌بندی‌ها |
+|:---:|:---:|:---:|
+| ![Home](https://via.placeholder.com/300x200/3B82F6/FFFFFF?text=📅+صفحه+اصلی) | ![Add Task](https://via.placeholder.com/300x200/10B981/FFFFFF?text=➕+تسک+جدید) | ![Categories](https://via.placeholder.com/300x200/8B5CF6/FFFFFF?text=📂+دسته‌بندی‌ها) |
 
-### `npm run build`
+</div>
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## 🌟 ویژگی‌های خفن
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### 🎯 هسته اصلی
+- ✅ **مدیریت کامل تسک‌ها** - اضافه، ویرایش، حذف و علامت‌گذاری
+- 📅 **تقویم شمسی هوشمند** - کاملاً منطبق با تقویم ایران
+- 🏷️ **دسته‌بندی‌های رنگارنگ** - سازماندهی کارها با آیکون و رنگ
+- 💾 **ذخیره‌سازی امن** - داده‌ها در مرورگر شما محفوظ می‌مانند
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### 🎨 تجربه کاربری
+- 🌙 **تم تاریک/روشن** - متناسب با سلیقه شما
+- 📱 **طراحی رسپانسیو** - تجربه عالی در همه دستگاه‌ها
+- ⚡ **سریع و سبک** - عملکرد روان بدون هیچ تأخیری
+- 🎪 **انیمیشن‌های جذاب** - تجربه کاربری لذت‌بخش
 
-### `npm run eject`
+### 🗓️ تقویم فارسی
+- 📅 **نمایش افقی و عمودی** - دو مدل مختلف تقویم
+- 🎯 **انتخاب تاریخ آسان** - با قابلیت اسکرول سریع
+- 📊 **آمار لحظه‌ای** - درصد پیشرفت و تعداد تسک‌ها
+- 🔄 **ناوبری روان** - بین ماه‌های مختلف
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## 🛠️ تکنولوژی‌ها
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+<div align="center">
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+| فناوری | نسخه | کاربرد |
+|:---:|:---:|:---|
+| <img src="https://img.icons8.com/office/40/000000/react.png" alt="React"/> | 18.2.0 | Framework اصلی |
+| <img src="https://img.icons8.com/color/40/000000/javascript.png" alt="JavaScript"/> | ES6+ | زبان برنامه‌نویسی |
+| <img src="https://img.icons8.com/color/40/000000/tailwindcss.png" alt="Tailwind"/> | 3.3.0 | استایل‌دهی |
+| <img src="https://img.icons8.com/color/40/000000/react-router.png" alt="React Router"/> | 6.8.0 | مسیریابی |
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+</div>
 
-## Learn More
+## 🎮 شروع سریع
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+**کافیه روی لینک زیر کلیک کنی و استفاده رو شروع کنی!**
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+[![Live Demo](https://img.shields.io/badge/🚀_مشاهده_برنامه_زنده-8B5CF6?style=for-the-badge&logo=rocket)](https://mbeigi-reza.github.io/ToDo-list/)
 
-### Code Splitting
+### نحوه استفاده
+1. **برو به [اپلیکیشن](https://mbeigi-reza.github.io/ToDo-list/)**
+2. **تسک جدید اضافه کن** 📝
+3. **دسته‌بندی انتخاب کن** 🏷️
+4. **مدیریت کن و پیشرفت رو ببین** 📊
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
