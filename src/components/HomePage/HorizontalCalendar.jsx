@@ -95,11 +95,8 @@ function jalaliToGregorian(jy, jm, jd) {
 }
 
 export default function HorizontalCalendar({ selectedDate, onDateChange }) {
-  const [currentMonth, setCurrentMonth] = useState(() => {
-    const today = new Date();
-    const jalaliToday = toJalali(today);
-    return { jy: jalaliToday.jy, jm: jalaliToday.jm };
-  });
+  // 🔥 همیشه آبان ۱۴۰۳
+  const [currentMonth, setCurrentMonth] = useState({ jy: 1403, jm: 8 });
 
   const [days, setDays] = useState([]);
   const scrollContainerRef = useRef(null);
@@ -194,12 +191,6 @@ export default function HorizontalCalendar({ selectedDate, onDateChange }) {
     "مهر", "آبان", "آذر", "دی", "بهمن", "اسفند"
   ];
 
-  const isCurrentMonthToday = () => {
-    const today = new Date();
-    const jalaliToday = toJalali(today);
-    return currentMonth.jy === jalaliToday.jy && currentMonth.jm === jalaliToday.jm;
-  };
-
   return (
     <div className="bg-white dark:bg-gray-800 p-1 xxxs:p-2 xxs:p-3 xs:p-4 shadow-lg rounded-lg w-full mx-0 px-0 transition-colors duration-300">
       {/* کنترل ماه */}
@@ -215,9 +206,7 @@ export default function HorizontalCalendar({ selectedDate, onDateChange }) {
         <div className="text-xxxs xxxs:text-xs xxs:text-sm xs:text-base md:text-lg font-semibold text-gray-800 dark:text-gray-200 text-center px-0.5 xxxs:px-1 transition-colors duration-300">
           <div className="text-xxxs xxxs:text-xxs xxs:text-xs xs:text-sm">{months[currentMonth.jm - 1]}</div>
           <div className="text-xxxs xxxs:text-xxs xxs:text-xs xs:text-sm">{currentMonth.jy}</div>
-          {isCurrentMonthToday() && (
-            <div className="text-xxxs xxxs:text-xxs text-green-600 dark:text-green-400 mt-0.5"></div>
-          )}
+          {/* 🔥 "ماه جاری" حذف شد */}
         </div>
 
         <button
